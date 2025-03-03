@@ -26,44 +26,40 @@ export default function Navbar() {
     }, [])
 
     return (
-        <header className={`fixed top-0 left-0 right-0 z-50`}>
+        <header className={`fixed z-50 w-full`}>
             <div className="container mx-auto px-4 my-4">
                 <div
-                    className={`flex space-x-15 justtif-between items-center md:justify-center md:items-center `}
+                    className={`flex justify-between items-center md:justify-center  md:items-center `}
             
                 >
-                    {/* Logo and name */}
-                    <motion.div
-                        className={`flex items-center bg-black backdrop-blur-sm rounded-full px-6 py-3 ${scrolled ? "shadow-lg" : ""
-                        }`}
-                        style={{
-                            backgroundColor: scrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.2)",
-                        }}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
+                    <div className={`flex space-x-0 md:space-x-10 items-center bg-black backdrop-blur-sm rounded-full px-6 py-3 ${scrolled ? "shadow-lg" : ""}`}
+                    style={{
+                        backgroundColor: scrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.2)",
+                    }}
                     >
-                        <a href="/" className="flex items-center space-x-2">
-                            <Image src="/logo.png" alt="BethaLabs Logo" width={30} height={30} className="mr-2" />
-                            <span className="text-white font-bold text-lg">BethaLabs</span>
-                        </a>
-                    </motion.div>
+                        <motion.div
+                            className={`flex items-center`}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <a href="/" className="flex items-center space-x-2">
+                                <Image src="/logo.png" alt="BethaLabs Logo" width={30} height={30} className="mr-2" />
+                                <span className="text-white font-bold text-lg">BethaLabs</span>
+                            </a>
+                        </motion.div>
+                        <motion.nav
+                            className={`hidden md:flex space-x-6`}
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            {navLinks.map((link, index) => (
+                                <NavLink key={link.name} {...link} index={index} />
+                            ))}
+                        </motion.nav>
 
-                    {/* Navigation links */}
-                    <motion.nav
-                        className={`hidden md:flex space-x-15 bg-black backdrop-blur-sm rounded-full px-6 py-4 ${scrolled ? "shadow-lg" : ""
-                        }`}
-                        style={{
-                            backgroundColor: scrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.2)",
-                        }}
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        {navLinks.map((link, index) => (
-                            <NavLink key={link.name} {...link} index={index} />
-                        ))}
-                    </motion.nav>
+                    </div>
 
                     {/* Mobile menu button */}
                     <div className="md:hidden">
@@ -90,13 +86,16 @@ export default function Navbar() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
+                    style={{
+                        backgroundColor: scrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.2)",
+                    }}
                 >
                     <div className="px-2 pt-2 pb-3 space-y-1">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="block px-3 py-2 text-white hover:text-[#34A853] transition-colors duration-200 font-medium rounded-lg"
+                                className="block px-3 py-2 text-white hover:text-white rounded-full hover:bg-[#34A853] px-4 py-3 transition-colors duration-200 font-medium rounded-lg"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 {link.name}

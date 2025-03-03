@@ -38,7 +38,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative py-20 md:py-38 lg:py-68 overflow-hidden">
+    <section className="relative py-40 md:py-38 lg:py-68 overflow-hidden">
       {/* Fondo estático con los "+" */}
       <div className="absolute -inset-[10px] opacity-15 pointer-events-none">
         <div
@@ -74,7 +74,7 @@ export default function Hero() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex justify-center space-x-4">
             <motion.a
               href="#proyectos"
-              className="inline-flex items-center px-8 py-3 bg-[#34A853] text-white font-medium rounded-md shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
+              className="inline-flex items-center px-3 py-2 bg-[#34A853] text-white font-medium rounded-full shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
               whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(52, 168, 83, 0.5)" }}
               whileTap={{ scale: 0.95 }}
             >
@@ -82,7 +82,7 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#contacto"
-              className="inline-flex items-center px-8 py-3 bg-transparent border-2 border-[#34A853] text-[#34A853] font-medium rounded-md hover:bg-[#34A853] hover:text-white transition-colors duration-300"
+              className="inline-flex items-center px-3 py-2 bg-transparent border-2 border-[#34A853] text-[#34A853] font-medium rounded-full hover:bg-[#34A853] hover:text-white transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
