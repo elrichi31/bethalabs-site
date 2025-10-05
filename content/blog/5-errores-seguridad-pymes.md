@@ -1,7 +1,7 @@
 ---
 title: "5 errores de seguridad que cometen las PyMEs (y cómo evitarlos)"
 excerpt: "Los errores más comunes que ponen en riesgo los datos de tu negocio y las soluciones prácticas para protegerte."
-date: "2024-09-28"
+date: "2025-09-20"
 author: "BethaLabs Team"
 category: "Ciberseguridad"
 tags: ["seguridad", "PyMEs", "buenas prácticas", "protección de datos"]

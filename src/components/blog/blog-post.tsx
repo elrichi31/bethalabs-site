@@ -3,10 +3,11 @@
 import { motion, useScroll, useSpring } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react"
-import { useRef } from "react"
+import { Calendar, Clock, Tag, ArrowLeft, Share2, Check } from "lucide-react"
+import { useRef, useState, useEffect } from "react"
 import RelatedPosts from "./related-posts"
 import type { BlogPost as BlogPostType } from "@/lib/blog"
+import confetti from "canvas-confetti"
 
 interface BlogPostProps {
   post: BlogPostType
@@ -15,6 +16,10 @@ interface BlogPostProps {
 
 export default function BlogPost({ post, allPosts }: BlogPostProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [copied, setCopied] = useState(false)
+  const [likes, setLikes] = useState(0)
+  const [hasLiked, setHasLiked] = useState(false)
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -25,6 +30,66 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
     damping: 30,
     restDelta: 0.001
   })
+
+  // Cargar likes del localStorage al montar
+  useEffect(() => {
+    const storedLikes = localStorage.getItem(`blog-likes-${post.slug}`)
+    const hasUserLiked = localStorage.getItem(`blog-liked-${post.slug}`)
+    
+    if (storedLikes) {
+      setLikes(parseInt(storedLikes))
+    }
+    if (hasUserLiked === 'true') {
+      setHasLiked(true)
+    }
+  }, [post.slug])
+
+  // Función para copiar URL al portapapeles
+  const handleShare = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Error al copiar:', err)
+    }
+  }
+
+  // Función para dar/quitar like con confeti (toggle)
+  const handleLike = () => {
+    if (hasLiked) {
+      // Unlike: Quitar like
+      const newLikes = Math.max(0, likes - 1)
+      setLikes(newLikes)
+      setHasLiked(false)
+      localStorage.setItem(`blog-likes-${post.slug}`, newLikes.toString())
+      localStorage.removeItem(`blog-liked-${post.slug}`)
+    } else {
+      // Like: Dar like
+      const newLikes = likes + 1
+      setLikes(newLikes)
+      setHasLiked(true)
+      localStorage.setItem(`blog-likes-${post.slug}`, newLikes.toString())
+      localStorage.setItem(`blog-liked-${post.slug}`, 'true')
+      
+      // Confeti centrado en el botón (solo al dar like)
+      const rect = document.getElementById('like-button')?.getBoundingClientRect()
+      if (rect) {
+        const x = (rect.left + rect.width / 2) / window.innerWidth
+        const y = (rect.top + rect.height / 2) / window.innerHeight
+        
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { x, y },
+          colors: ['#34A853', '#ffffff', '#FFD700'],
+          scalar: 0.8,
+          gravity: 1.2,
+          ticks: 200
+        })
+      }
+    }
+  }
 
   return (
     <div ref={containerRef} className="pt-32 pb-20">
@@ -109,16 +174,38 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
 
           {/* Barra de acciones */}
           <div className="flex items-center justify-between pt-6 border-t border-[#2a2a2a]">
-            <button className="flex items-center gap-2 text-[#B3B3B3] hover:text-[#34A853] transition-colors duration-300 group">
-              <Share2 className="h-5 w-5 group-hover:scale-110 transition-transform" />
-              <span className="font-medium">Compartir artículo</span>
+            <button 
+              onClick={handleShare}
+              className="flex items-center gap-2 text-[#B3B3B3] hover:text-[#34A853] transition-colors duration-300 group"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-5 w-5 text-[#34A853]" />
+                  <span className="font-medium text-[#34A853]">¡Enlace copiado!</span>
+                </>
+              ) : (
+                <>
+                  <Share2 className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                  <span className="font-medium">Compartir artículo</span>
+                </>
+              )}
             </button>
             
             <div className="flex items-center gap-3">
               <span className="text-sm text-[#B3B3B3]">¿Te resultó útil?</span>
-              <button className="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1E1E1E] border border-[#2a2a2a] hover:border-[#34A853] transition-colors">
-                <span>👍</span>
-                <span className="text-sm text-[#B3B3B3]">Sí</span>
+              <button 
+                id="like-button"
+                onClick={handleLike}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 hover:scale-105 active:scale-95 ${
+                  hasLiked 
+                    ? 'bg-[#34A853] border-[#34A853] text-white hover:bg-[#34A853]/80' 
+                    : 'bg-[#1E1E1E] border-[#2a2a2a] hover:border-[#34A853]'
+                }`}
+              >
+                <span className="text-lg">👍</span>
+                <span className="text-sm font-medium">
+                  Sí{likes > 0}
+                </span>
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
 ---
 title: "Caso Real: Cómo Evitamos el Robo de $20,000 a una PyME Ecuatoriana"
 excerpt: "Detectamos a tiempo un sofisticado ataque de phishing con malware stealer que intentaba robar $20,000 mediante un crédito fraudulento. Análisis completo del caso."
-date: "2024-10-05"
+date: "2025-10-05"
 author: "BethaLabs Team"
 category: "Ciberseguridad"
 tags: ["phishing", "malware", "stealer", "caso real", "Ecuador"]

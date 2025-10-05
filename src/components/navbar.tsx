@@ -31,9 +31,11 @@ export default function Navbar() {
     return (
         <header className={`fixed z-50 w-full`}>
             <div className="container mx-auto px-4 my-4">
-                <div
+                <motion.div
                     className={`flex justify-between items-center md:justify-center  md:items-center `}
-            
+                    initial={{ y: -5, opacity: 0 }}
+                    animate={{ y: scrolled ? 0 : -5, opacity: 1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                     <div className={`flex space-x-0 md:space-x-10 items-center bg-black backdrop-blur-sm rounded-full px-6 py-3 ${scrolled ? "shadow-lg" : ""}`}
                     style={{
@@ -47,7 +49,13 @@ export default function Navbar() {
                             transition={{ duration: 0.5 }}
                         >
                             <a href="/" className="flex items-center space-x-2">
-                                <Image src="/logo.png" alt="BethaLabs Logo" width={30} height={30} className="mr-2" />
+                                <Image 
+                                    src="/logo.png" 
+                                    alt="BethaLabs Logo" 
+                                    width={30} 
+                                    height={30} 
+                                    className="mr-2 hover:scale-110 transition-transform duration-300" 
+                                />
                                 <span className="text-white font-bold text-lg">BethaLabs</span>
                             </a>
                         </motion.div>
@@ -79,7 +87,7 @@ export default function Navbar() {
                             )}
                         </button>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {mobileMenuOpen && (
@@ -112,13 +120,27 @@ export default function Navbar() {
 }
 
 function NavLink({ name, href, index }: { name: string; href: string; index: number }) {
+    const pathname = usePathname()
+    // Solo marcar activo en páginas específicas (como /blog), no en página principal con secciones
+    const isActive = pathname !== '/' && (
+        (href.startsWith('/blog') && pathname.startsWith('/blog')) ||
+        (href !== '/' && !href.startsWith('/#') && pathname === href)
+    )
+    
     return (
         <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
         >
-            <Link href={href} className="text-white hover:text- transition-colors duration-200 font-medium rounded-full hover:bg-[#34A853] px-4 py-3">
+            <Link 
+                href={href} 
+                className={`text-white transition-all duration-200 font-medium rounded-full px-4 py-3 ${
+                    isActive 
+                        ? 'bg-[#34A853]' 
+                        : 'hover:bg-[#34A853]'
+                }`}
+            >
                 {name}
             </Link>
         </motion.div>

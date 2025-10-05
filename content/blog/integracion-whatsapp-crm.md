@@ -1,7 +1,7 @@
 ---
 title: "Integrando WhatsApp Business con tu CRM automáticamente"
 excerpt: "Guía paso a paso para conectar WhatsApp Business API con tu sistema de gestión de clientes usando automatizaciones."
-date: "2024-09-25"
+date: "2025-06-15"
 author: "BethaLabs Team"
 category: "Automatización"
 tags: ["WhatsApp", "CRM", "integración", "API"]
