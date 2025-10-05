@@ -1,7 +1,7 @@
 import BlogPost from "@/components/blog/blog-post"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { getPostBySlug, getAllPostSlugs } from "@/lib/blog"
+import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/blog"
 import { notFound } from "next/navigation"
 
 // Esto generará las páginas estáticas para cada slug
@@ -15,6 +15,7 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
+  const allPosts = await getAllPosts()
 
   if (!post) {
     notFound()
@@ -23,7 +24,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <main className="min-h-screen bg-[#121212] text-white">
       <Navbar />
-      <BlogPost post={post} />
+      <BlogPost post={post} allPosts={allPosts} />
       <Footer />
     </main>
   )

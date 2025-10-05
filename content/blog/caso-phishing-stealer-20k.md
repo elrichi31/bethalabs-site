@@ -5,7 +5,7 @@ date: "2024-10-05"
 author: "BethaLabs Team"
 category: "Ciberseguridad"
 tags: ["phishing", "malware", "stealer", "caso real", "Ecuador"]
-image: "/blog/caso-phishing-stealer.jpeg"
+image: "/blog/caso-phishing-stealer.webp"
 readTime: "12 min"
 ---
 

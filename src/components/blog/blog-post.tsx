@@ -5,23 +5,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react"
 import { useRef } from "react"
+import RelatedPosts from "./related-posts"
+import type { BlogPost as BlogPostType } from "@/lib/blog"
 
 interface BlogPostProps {
-  post: {
-    slug: string
-    title: string
-    excerpt: string
-    content?: string
-    date: string
-    readTime: string
-    category: string
-    tags: string[]
-    image: string
-    author: string
-  }
+  post: BlogPostType
+  allPosts: BlogPostType[]
 }
 
-export default function BlogPost({ post }: BlogPostProps) {
+export default function BlogPost({ post, allPosts }: BlogPostProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -602,6 +594,11 @@ export default function BlogPost({ post }: BlogPostProps) {
             </div>
           </div>
         </motion.div>
+
+        {/* Artículos Relacionados (Dinámicos) */}
+        <div className="max-w-4xl mx-auto">
+          <RelatedPosts currentPost={post} allPosts={allPosts} />
+        </div>
 
         {/* Navegación a otros artículos */}
         <motion.div

@@ -167,22 +167,27 @@ Edit `projects` array in `src/components/projects.tsx`:
 ## Output & Communication Guidelines
 
 ### When Making Changes:
-- ✅ **DO**: Provide a concise summary in the chat conversation
-- ✅ **DO**: List the files modified and key changes
+- ✅ **DO**: Provide a concise summary in the chat conversation (2-5 sentences max)
+- ✅ **DO**: List ONLY the files modified (no detailed explanations unless asked)
+- ✅ **DO**: Mention next steps ONLY if critical
 - ❌ **DON'T**: Create .md files for change logs, summaries, or documentation unless specifically requested
 - ❌ **DON'T**: Create README files for every feature
+- ❌ **DON'T**: Generate long reports or documentation after every change
+- ❌ **DON'T**: Create instruction files or guides unless explicitly asked
 
 ### Summary Format (in chat):
 ```
-✅ Changes Made:
-- Modified: file1.tsx (what changed)
-- Created: file2.tsx (purpose)
-- Key improvements: brief list
-
-Next steps: (if any)
+✅ Done: [Brief description of what was changed]
+Files: file1.tsx, file2.md
 ```
 
-Keep it simple and conversational. The project should stay clean without unnecessary documentation files.
+Keep responses SHORT and actionable. No walls of text or unnecessary documentation files.
+
+### Pricing Policy
+- ❌ **NEVER include specific prices** in public-facing content (blog, components, pages)
+- ✅ Keep pricing discussions private (email/contact only)
+- ✅ Use generic phrases like "Consulta por precios" or "Cotización personalizada"
+- ❌ Don't write prices in comments, documentation, or example data
 
 ## Blog System (Markdown-based)
 

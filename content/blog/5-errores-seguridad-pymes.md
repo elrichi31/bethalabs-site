@@ -5,7 +5,7 @@ date: "2024-09-28"
 author: "BethaLabs Team"
 category: "Ciberseguridad"
 tags: ["seguridad", "PyMEs", "buenas prácticas", "protección de datos"]
-image: "/blog/errores-seguridad.jpg"
+image: "/blog/errores-seguridad.webp"
 readTime: "10 min"
 ---
 

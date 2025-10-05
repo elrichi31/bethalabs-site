@@ -12,6 +12,21 @@ interface BlogSectionProps {
 export default function Blog({ posts }: BlogSectionProps) {
   // Mostrar solo los primeros 3 posts
   const featuredPosts = posts.slice(0, 3)
+  
+  // Generar descripción dinámica basada en las categorías de los posts
+  const categories = [...new Set(posts.map(post => post.category))]
+  const hasAutomation = categories.includes("Automatización")
+  const hasSecurity = categories.includes("Ciberseguridad")
+  const hasTutorials = categories.includes("Tutoriales")
+  
+  let description = "Recursos especializados para PyMEs: "
+  const topics = []
+  if (hasSecurity) topics.push("ciberseguridad")
+  if (hasAutomation) topics.push("automatización")
+  if (hasTutorials) topics.push("tutoriales prácticos")
+  
+  description += topics.join(", ") + " y casos de estudio reales"
+  
   return (
     <section id="blog" className="py-20 bg-[#1A1A1A]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,7 +39,7 @@ export default function Blog({ posts }: BlogSectionProps) {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Recursos y Conocimiento</h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-            Guías prácticas, casos de estudio y consejos sobre automatización y ciberseguridad para PyMEs
+            {description}
           </p>
         </motion.div>
 

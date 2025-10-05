@@ -11,7 +11,7 @@ const projects = [
       description: "Caso real en Quito: Cliente recibió correo legítimo del Banco Pichincha sobre un crédito de $20k que nunca solicitó. Al investigar su PC encontramos un malware stealer/keylogger que llegó vía correo de phishing disfrazado de cotización empresarial (archivo .uu). El malware había robado sus credenciales bancarias y los criminales las usaron para solicitar el crédito. Realizamos análisis forense completo, eliminamos el malware, cambiamos credenciales y contactamos al banco para cancelar el crédito fraudulento a tiempo.",
       challenge: "Malware avanzado (stealer + keylogger) robó credenciales bancarias sin ser detectado. El virus evadía antivirus básicos usando técnicas anti-sandbox y exfiltraba datos vía FTP.",
       solution: "Análisis forense con VirusTotal, extracción de IOCs, limpieza profunda del sistema, cambio de 15+ contraseñas y coordinación con Banco Pichincha.",
-      image: "/blog/caso-phishing-stealer.jpeg",
+      image: "/blog/caso-phishing-stealer.webp",
       tags: ["Ciberseguridad", "Phishing", "Malware", "Caso Real", "Ecuador"],
       impact: "$20,000 USD salvados + sistema securizado",
       featured: true,
