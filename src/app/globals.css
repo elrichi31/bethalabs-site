@@ -101,3 +101,30 @@ button, input, textarea, select {
 .body-font {
   font-family: var(--bodyFont);
 }
+
+/* Override de highlight.js para mejorar los colores del código */
+.hljs {
+  background: #282c34 !important;
+  color: #abb2bf !important;
+  border-radius: 0.75rem;
+}
+
+/* Scrollbar personalizado para bloques de código */
+.blog-content pre::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.blog-content pre::-webkit-scrollbar-track {
+  background: #1e2227;
+  border-radius: 4px;
+}
+
+.blog-content pre::-webkit-scrollbar-thumb {
+  background: #34A853;
+  border-radius: 4px;
+}
+
+.blog-content pre::-webkit-scrollbar-thumb:hover {
+  background: #2a8644;
+}

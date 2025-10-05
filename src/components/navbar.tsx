@@ -5,17 +5,20 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
+import { usePathname } from "next/navigation"
 
 const navLinks = [
-    { name: "Inicio", href: "#" },
-    { name: "Proyectos", href: "#proyectos" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contacto", href: "#contacto" },
+    { name: "Inicio", href: "/" },
+    { name: "Servicios", href: "/#servicios" },
+    { name: "Casos", href: "/#proyectos" },
+    { name: "Blog", href: "/#blog" },
+    { name: "Contacto", href: "/#contacto" },
 ]
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
+    const pathname = usePathname()
 
     useEffect(() => {
         const handleScroll = () => {

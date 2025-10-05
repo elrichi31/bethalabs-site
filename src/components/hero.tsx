@@ -56,9 +56,9 @@ export default function Hero() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-8">
             <h2 className="text-[#34A853] font-bold text-lg mb-2">BethaLabs</h2>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
-              Explorando{" "}
-              <span className="text-[#34A853]">Ciberseguridad</span> y{" "}
-              <span className="text-[#34A853]">Desarrollo Web</span>
+              Transformando tu negocio con{" "}
+              <span className="text-[#34A853]">automatizaciones inteligentes</span> y{" "}
+              <span className="text-[#34A853]">seguridad digital</span>
             </h1>
           </motion.div>
 
@@ -68,25 +68,25 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Compartiendo conocimiento, proyectos y exploraciones tecnológicas en la intersección de la seguridad y el desarrollo.
+            Potenciamos pequeñas y medianas empresas con soluciones técnicas que optimizan procesos y protegen tus datos
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex justify-center space-x-4">
             <motion.a
-              href="#proyectos"
-              className="inline-flex items-center px-3 py-2 bg-[#34A853] text-white font-medium rounded-full shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
+              href="#contacto"
+              className="inline-flex items-center px-6 py-3 bg-[#34A853] text-white font-medium rounded-full shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
               whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(52, 168, 83, 0.5)" }}
               whileTap={{ scale: 0.95 }}
             >
-              Ver proyectos
+              Solicitar demo gratuita
             </motion.a>
             <motion.a
-              href="#contacto"
-              className="inline-flex items-center px-3 py-2 bg-transparent border-2 border-[#34A853] text-[#34A853] font-medium rounded-full hover:bg-[#34A853] hover:text-white transition-colors duration-300"
+              href="#servicios"
+              className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-[#34A853] text-[#34A853] font-medium rounded-full hover:bg-[#34A853] hover:text-white transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Contactar
+              Ver nuestros servicios
             </motion.a>
           </motion.div>
         </div>

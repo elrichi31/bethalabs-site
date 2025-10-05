@@ -10,6 +10,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    company: "",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -29,7 +30,7 @@ export default function Contact() {
 
     setIsSubmitting(false)
     setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
+    setFormData({ name: "", email: "", company: "", message: "" })
 
     // Reset success message after 5 seconds
     setTimeout(() => setSubmitSuccess(false), 5000)
@@ -49,10 +50,9 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">¿Tienes una idea o quieres colaborar?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Empieza tu transformación digital</h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-            BethaLabs no es una empresa de servicios, pero si tienes una idea interesante o un proyecto en el que
-            podamos colaborar, ¡hablemos!
+            ¿Listo para optimizar tu negocio con automatización o proteger tus datos? Hablemos. En BethaLabs estamos listos para acompañarte.
           </p>
         </motion.div>
 
@@ -63,7 +63,7 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Envíame un mensaje</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Solicita tu consultoría gratuita</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[#B3B3B3] mb-1">
@@ -98,8 +98,23 @@ export default function Contact() {
               </div>
 
               <div>
+                <label htmlFor="company" className="block text-sm font-medium text-[#B3B3B3] mb-1">
+                  Empresa / Tipo de negocio
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-[#1E1E1E] border border-[#333333] rounded-md focus:outline-none focus:ring-2 focus:ring-[#34A853] text-white"
+                  placeholder="Ej: Restaurante, Tienda online, Consultorio..."
+                />
+              </div>
+
+              <div>
                 <label htmlFor="message" className="block text-sm font-medium text-[#B3B3B3] mb-1">
-                  Mensaje
+                  ¿Qué necesitas automatizar o proteger?
                 </label>
                 <textarea
                   id="message"
@@ -109,7 +124,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-[#1E1E1E] border border-[#333333] rounded-md focus:outline-none focus:ring-2 focus:ring-[#34A853] text-white resize-none"
-                  placeholder="Cuéntame sobre tu idea o proyecto..."
+                  placeholder="Cuéntanos brevemente qué proceso te gustaría automatizar o qué aspectos de seguridad te preocupan..."
                 />
               </div>
 
@@ -145,7 +160,7 @@ export default function Contact() {
                     Enviando...
                   </span>
                 ) : (
-                  "Enviar mensaje"
+                  "Enviar solicitud"
                 )}
               </motion.button>
 
@@ -156,7 +171,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  ¡Mensaje enviado con éxito! Te responderé pronto.
+                  ¡Solicitud enviada con éxito! Nos pondremos en contacto pronto.
                 </motion.div>
               )}
             </form>
@@ -169,13 +184,24 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="bg-[#1E1E1E] p-8 rounded-lg shadow-xl"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Conéctate conmigo</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Información de contacto</h3>
             <p className="text-[#B3B3B3] mb-8">
-              También puedes encontrarme en las siguientes plataformas. No dudes en seguirme o enviarme un mensaje
-              directo.
+              También puedes contactarnos directamente por email o seguirnos en nuestras redes profesionales.
             </p>
 
             <div className="space-y-4">
+              <div className="flex items-start p-4 bg-[#121212] rounded-lg">
+                <div className="bg-[#34A853]/20 p-2 rounded-lg mr-4">
+                  <svg className="h-6 w-6 text-[#34A853]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-white font-medium">Email</h4>
+                  <p className="text-[#34A853] text-sm">bethalabs.dev@gmail.com</p>
+                </div>
+              </div>
+
               <a
                 href="#"
                 className="flex items-center p-4 bg-[#121212] rounded-lg hover:bg-[#1a1a1a] transition-colors duration-300"

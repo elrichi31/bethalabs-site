@@ -12,7 +12,8 @@ const socialLinks = [
 
 const quickLinks = [
   { name: "Inicio", href: "#" },
-  { name: "Proyectos", href: "#proyectos" },
+  { name: "Servicios", href: "#servicios" },
+  { name: "Casos", href: "#proyectos" },
   { name: "Blog", href: "#blog" },
   { name: "Contacto", href: "#contacto" },
 ]
@@ -24,7 +25,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-white font-bold text-lg mb-4">BethaLabs</h3>
-            <p className="text-[#B3B3B3] mb-4">Explorando la intersección entre ciberseguridad y desarrollo web.</p>
+            <p className="text-[#B3B3B3] mb-4">Innovación, automatización y seguridad para tu negocio.</p>
             <div className="flex space-x-4">
               {socialLinks.map((link) => (
                 <motion.a
@@ -56,10 +57,11 @@ export default function Footer() {
 
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Contacto</h3>
-            <p className="text-[#B3B3B3] mb-2">¿Tienes alguna pregunta o propuesta?</p>
-            <a href="mailto:contacto@bethalabs.dev" className="text-[#34A853] hover:underline">
+            <p className="text-[#B3B3B3] mb-2">¿Listo para optimizar tu negocio?</p>
+            <a href="mailto:contacto@bethalabs.dev" className="text-[#34A853] hover:underline block mb-3">
               contacto@bethalabs.dev
             </a>
+            <p className="text-[#B3B3B3] text-sm">BethaLabs — innovación, automatización y seguridad para tu negocio.</p>
           </div>
         </div>
 

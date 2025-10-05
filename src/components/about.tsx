@@ -23,18 +23,16 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">¿Quién soy?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">¿Quiénes somos?</h2>
             <p className="text-[#B3B3B3] text-lg mb-6">
-              Soy un entusiasta de la ciberseguridad y el desarrollo web. BethaLabs es mi identidad personal en el mundo
-              tech, donde comparto mis proyectos, investigaciones y pensamientos sobre tecnología.
+              En BethaLabs somos una agencia dedicada a la innovación tecnológica. Creamos automatizaciones, optimizamos flujos internos y brindamos consultorías de ciberseguridad para que negocios sin área técnica puedan escalar con confianza.
             </p>
             <p className="text-[#B3B3B3] text-lg mb-6">
-              Mi pasión es explorar las intersecciones entre seguridad y desarrollo, creando soluciones que sean tanto
-              robustas como elegantes.
+              Nuestra misión es democratizar el acceso a soluciones técnicas avanzadas, ayudando a pequeñas y medianas empresas a competir con herramientas de clase mundial.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a href="#contacto" className="inline-flex items-center text-[#34A853] font-medium hover:underline">
-                Conéctate conmigo
+                Hablemos de tu proyecto
                 <svg
                   className="ml-2 w-5 h-5"
                   fill="none"
