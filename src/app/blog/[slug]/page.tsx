@@ -12,8 +12,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
 
   if (!post) {
     notFound()
@@ -28,8 +29,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   )
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
 
   if (!post) {
     return {
@@ -43,7 +45,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     keywords: [...post.tags, 'Ecuador', 'PyMEs Ecuador', 'BethaLabs'],
     authors: [{ name: post.author }],
     alternates: {
-      canonical: `https://bethalabs.com/blog/${params.slug}`,
+      canonical: `https://bethalabs.com/blog/${slug}`,
     },
     openGraph: {
       title: post.title,
@@ -53,7 +55,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       authors: [post.author],
       tags: post.tags,
       locale: 'es_EC',
-      url: `https://bethalabs.com/blog/${params.slug}`,
+      url: `https://bethalabs.com/blog/${slug}`,
       images: [
         {
           url: post.image,
