@@ -5,6 +5,7 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Github, Linkedin, Twitter } from "lucide-react"
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -24,16 +26,48 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitError(false)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    // EmailJS configuration
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", email: "", company: "", message: "" })
+    // Validar que las variables de entorno existan
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS no está configurado correctamente')
+      setSubmitError(true)
+      setIsSubmitting(false)
+      setTimeout(() => setSubmitError(false), 5000)
+      return
+    }
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setSubmitSuccess(false), 5000)
+    try {
+      // Enviar email usando EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        },
+        publicKey
+      )
+
+      setIsSubmitting(false)
+      setSubmitSuccess(true)
+      setFormData({ name: "", email: "", company: "", message: "" })
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitSuccess(false), 5000)
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error)
+      setIsSubmitting(false)
+      setSubmitError(true)
+      setTimeout(() => setSubmitError(false), 5000)
+    }
   }
 
   return (
@@ -166,12 +200,23 @@ export default function Contact() {
 
               {submitSuccess && (
                 <motion.div
-                  className="text-center text-[#34A853] mt-4"
+                  className="text-center text-[#34A853] mt-4 p-4 bg-[#34A853]/10 rounded-lg border border-[#34A853]"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  ¡Solicitud enviada con éxito! Nos pondremos en contacto pronto.
+                  ✅ ¡Solicitud enviada con éxito! Nos pondremos en contacto pronto.
+                </motion.div>
+              )}
+
+              {submitError && (
+                <motion.div
+                  className="text-center text-red-400 mt-4 p-4 bg-red-400/10 rounded-lg border border-red-400"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  ❌ Error al enviar. Por favor, intenta de nuevo o escríbenos directamente a bethalabs.dev@gmail.com
                 </motion.div>
               )}
             </form>

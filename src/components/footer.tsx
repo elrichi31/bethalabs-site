@@ -58,8 +58,8 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Contacto</h3>
             <p className="text-[#B3B3B3] mb-2">¿Listo para optimizar tu negocio?</p>
-            <a href="mailto:contacto@bethalabs.dev" className="text-[#34A853] hover:underline block mb-3">
-              contacto@bethalabs.dev
+            <a href="mailto:bethalabs.dev@gmail.com" className="text-[#34A853] hover:underline block mb-3">
+              bethalabs.dev@gmail.com
             </a>
             <p className="text-[#B3B3B3] text-sm">BethaLabs — innovación, automatización y seguridad para tu negocio.</p>
           </div>
