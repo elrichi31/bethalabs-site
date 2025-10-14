@@ -3,6 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
 
 export default function About() {
   const sectionRef = useRef(null)
@@ -12,6 +14,8 @@ export default function About() {
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const { language } = useLanguage()
+  const t = translations[language].about
 
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-[#1A1A1A] overflow-hidden">
@@ -23,16 +27,25 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">¿Quiénes somos?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t.title}</h2>
             <p className="text-[#B3B3B3] text-lg mb-6">
-              En BethaLabs somos una agencia dedicada a la innovación tecnológica. Creamos automatizaciones, optimizamos flujos internos y brindamos consultorías de ciberseguridad para que negocios sin área técnica puedan escalar con confianza.
+              {t.paragraph1}
             </p>
             <p className="text-[#B3B3B3] text-lg mb-6">
-              Nuestra misión es democratizar el acceso a soluciones técnicas avanzadas, ayudando a pequeñas y medianas empresas a competir con herramientas de clase mundial.
+              {t.paragraph2}
             </p>
+            <motion.div
+              className="bg-[#34A853]/10 border border-[#34A853]/30 text-[#34A853] px-4 py-3 rounded-lg mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <p className="text-sm font-medium">{t.paragraph3}</p>
+            </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a href="#contacto" className="inline-flex items-center text-[#34A853] font-medium hover:underline">
-                Hablemos de tu proyecto
+                {t.cta}
                 <svg
                   className="ml-2 w-5 h-5"
                   fill="none"
@@ -65,6 +78,9 @@ export default function About() {
                 alt="BethaLabs"
                 width={400}
                 height={200}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority={false}
+                loading="lazy"
                 className="w-full h-auto rounded-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-60"></div>

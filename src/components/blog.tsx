@@ -4,28 +4,19 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import type { BlogPost } from "@/lib/blog"
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
 
 interface BlogSectionProps {
   posts: BlogPost[]
 }
 
 export default function Blog({ posts }: BlogSectionProps) {
+  const { language } = useLanguage()
+  const t = translations[language].blog
+  
   // Mostrar solo los primeros 3 posts
   const featuredPosts = posts.slice(0, 3)
-  
-  // Generar descripción dinámica basada en las categorías de los posts
-  const categories = [...new Set(posts.map(post => post.category))]
-  const hasAutomation = categories.includes("Automatización")
-  const hasSecurity = categories.includes("Ciberseguridad")
-  const hasTutorials = categories.includes("Tutoriales")
-  
-  let description = "Recursos especializados para PyMEs: "
-  const topics = []
-  if (hasSecurity) topics.push("ciberseguridad")
-  if (hasAutomation) topics.push("automatización")
-  if (hasTutorials) topics.push("tutoriales prácticos")
-  
-  description += topics.join(", ") + " y casos de estudio reales"
   
   return (
     <section id="blog" className="py-20 bg-[#1A1A1A]">
@@ -37,10 +28,21 @@ export default function Blog({ posts }: BlogSectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Recursos y Conocimiento</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-            {description}
+            {t.subtitle}
           </p>
+          {language === 'en' && (
+            <motion.div
+              className="mt-4 inline-flex items-center gap-2 bg-[#34A853]/10 border border-[#34A853]/30 text-[#34A853] px-4 py-2 rounded-full text-sm"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="text-lg">🇪🇸</span>
+              <span>{t.contentNote}</span>
+            </motion.div>
+          )}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -60,20 +62,30 @@ export default function Blog({ posts }: BlogSectionProps) {
                   alt={post.title}
                   width={400}
                   height={200}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
               <div className="p-6 flex-grow flex flex-col">
-                <div className="flex justify-between items-center text-sm text-[#B3B3B3] mb-3">
-                  <span className="bg-[#34A853]/20 text-[#34A853] px-2 py-1 rounded-full text-xs font-medium">
-                    {post.category}
-                  </span>
-                  <span>{post.readTime} lectura</span>
+                <div className="flex justify-between items-center text-sm text-[#B3B3B3] mb-3 flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-[#34A853]/20 text-[#34A853] px-2 py-1 rounded-full text-xs font-medium">
+                      {post.category}
+                    </span>
+                    {language === 'en' && (
+                      <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-full text-xs font-medium">
+                        {t.contentBadge}
+                      </span>
+                    )}
+                  </div>
+                  <span>{post.readTime} {language === 'es' ? 'lectura' : 'read'}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{post.title}</h3>
                 <p className="text-[#B3B3B3] mb-4 flex-grow">{post.excerpt}</p>
                 <Link href={`/blog/${post.slug}`} className="text-[#34A853] font-medium hover:underline mt-auto inline-flex items-center">
-                  Leer artículo
+                  {t.readMore}
                   <svg
                     className="ml-2 w-4 h-4"
                     fill="none"

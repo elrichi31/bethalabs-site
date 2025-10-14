@@ -3,10 +3,14 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Shield, Code } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/translations";
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const { language } = useLanguage();
+  const t = translations[language].hero;
 
   // Manejo del mouse
   useEffect(() => {
@@ -54,11 +58,11 @@ export default function Hero() {
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-8">
-            <h2 className="text-[#34A853] font-bold text-lg mb-2">BethaLabs</h2>
+            <h2 className="text-[#34A853] font-bold text-lg mb-2">{t.subtitle}</h2>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
-              Transformando tu negocio con{" "}
-              <span className="text-[#34A853]">automatizaciones inteligentes</span> y{" "}
-              <span className="text-[#34A853]">seguridad digital</span>
+              {t.title}{" "}
+              <span className="text-[#34A853]">{t.titleHighlight1}</span> {t.titleAnd}{" "}
+              <span className="text-[#34A853]">{t.titleHighlight2}</span>
             </h1>
           </motion.div>
 
@@ -68,7 +72,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Potenciamos pequeñas y medianas empresas con soluciones técnicas que optimizan procesos y protegen tus datos
+            {t.description}
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex justify-center space-x-4">
@@ -78,7 +82,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(52, 168, 83, 0.5)" }}
               whileTap={{ scale: 0.95 }}
             >
-              Solicitar demo gratuita
+              {t.ctaPrimary}
             </motion.a>
             <motion.a
               href="#servicios"
@@ -86,21 +90,21 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Ver nuestros servicios
+              {t.ctaSecondary}
             </motion.a>
           </motion.div>
         </div>
 
-        {/* Íconos flotantes animados en las esquinas */}
+        {/* Íconos flotantes animados en las esquinas - Ocultos en mobile */}
         <motion.div
-          className="absolute top-10 left-10"
+          className="hidden md:block absolute top-10 left-10"
           animate={{ x: calculateTranslate("x", -15), y: calculateTranslate("y", -15) }}
           transition={{ ease: "linear", duration: 0.2 }}
         >
           <Shield className="text-[#34A853] opacity-100" size={48} />
         </motion.div>
         <motion.div
-          className="absolute bottom-10 right-10"
+          className="hidden md:block absolute bottom-10 right-10"
           animate={{ x: calculateTranslate("x", 15), y: calculateTranslate("y", 15) }}
           transition={{ ease: "linear", duration: 0.2 }}
         >

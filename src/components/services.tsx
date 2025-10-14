@@ -2,75 +2,39 @@
 
 import { motion } from "framer-motion"
 import { Zap, Shield, TrendingUp, CheckCircle } from "lucide-react"
-
-const services = [
-  {
-    id: 1,
-    icon: Zap,
-    name: "BethaFlow",
-    title: "Automatizaciones inteligentes",
-    description: "Diseñamos flujos automáticos entre tus herramientas para que tu equipo se enfoque en lo importante.",
-    features: [
-      "Integraciones personalizadas con n8n o Python",
-      "Automatización de reportes y notificaciones",
-      "Sincronización de datos en tiempo real",
-      "Mantenimiento y escalado continuo"
-    ],
-    benefits: [
-      "Ahorro de tiempo y reducción de errores",
-      "Procesos más eficientes sin intervención manual",
-      "Mejores decisiones con datos conectados"
-    ]
-  },
-  {
-    id: 2,
-    icon: Shield,
-    name: "BethaSecure",
-    title: "Consultoría de Ciberseguridad",
-    description: "Protegemos tu negocio con auditorías, configuraciones seguras y asesoramiento continuo.",
-    features: [
-      "Auditorías de seguridad (PCs, red, contraseñas)",
-      "Detección y limpieza de malware",
-      "Configuración de copias de seguridad",
-      "Asesoramiento en buenas prácticas digitales"
-    ],
-    benefits: [
-      "Tranquilidad ante amenazas digitales",
-      "Menor riesgo de pérdida de datos",
-      "Confianza para usar tecnología sin temor"
-    ]
-  }
-]
-
-const methodology = [
-  {
-    step: "01",
-    title: "Diagnóstico y descubrimiento",
-    description: "Nos reunimos contigo para entender tus operaciones, herramientas actuales y puntos de dolor."
-  },
-  {
-    step: "02",
-    title: "Propuesta a medida",
-    description: "Creamos una solución personalizada con roadmap claro y entregables definidos."
-  },
-  {
-    step: "03",
-    title: "Implementación & pruebas",
-    description: "Desarrollamos, testeamos y validamos cada parte del proyecto con comunicación transparente."
-  },
-  {
-    step: "04",
-    title: "Entrega & capacitación",
-    description: "Te entregamos documentación, capacitación básica y acompañamiento inicial."
-  },
-  {
-    step: "05",
-    title: "Soporte y escalado",
-    description: "Ofrecemos mantenimiento opcional, mejoras continuas o auditorías periódicas."
-  }
-]
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
 
 export default function Services() {
+  const { language } = useLanguage()
+  const t = translations[language].services
+
+  const services = [
+    {
+      id: 1,
+      icon: Zap,
+      name: t.bethaflow.name,
+      title: t.bethaflow.title,
+      description: t.bethaflow.description,
+      features: t.bethaflow.features,
+      benefits: t.bethaflow.benefits,
+      featuresTitle: t.bethaflow.featuresTitle,
+      benefitsTitle: t.bethaflow.benefitsTitle
+    },
+    {
+      id: 2,
+      icon: Shield,
+      name: t.bethasecure.name,
+      title: t.bethasecure.title,
+      description: t.bethasecure.description,
+      features: t.bethasecure.features,
+      benefits: t.bethasecure.benefits,
+      featuresTitle: t.bethasecure.featuresTitle,
+      benefitsTitle: t.bethasecure.benefitsTitle
+    }
+  ]
+
+  const methodology = t.methodology.steps
   return (
     <>
       {/* Servicios */}
@@ -83,9 +47,9 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Nuestros Servicios</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
             <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-              Soluciones técnicas diseñadas para PyMEs que quieren crecer con tecnología confiable
+              {t.subtitle}
             </p>
           </motion.div>
 
@@ -112,7 +76,7 @@ export default function Services() {
                 <p className="text-[#B3B3B3] mb-6">{service.description}</p>
 
                 <div className="mb-6">
-                  <h4 className="text-white font-semibold mb-3">Qué hacemos:</h4>
+                  <h4 className="text-white font-semibold mb-3">{service.featuresTitle}</h4>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-[#B3B3B3]">
@@ -124,7 +88,7 @@ export default function Services() {
                 </div>
 
                 <div>
-                  <h4 className="text-white font-semibold mb-3">Beneficios para ti:</h4>
+                  <h4 className="text-white font-semibold mb-3">{service.benefitsTitle}</h4>
                   <ul className="space-y-2">
                     {service.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start text-[#B3B3B3]">
@@ -150,9 +114,9 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Cómo trabajamos</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.methodology.title}</h2>
             <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-              Nuestra metodología garantiza entregas puntuales y resultados medibles
+              {t.methodology.subtitle}
             </p>
           </motion.div>
 

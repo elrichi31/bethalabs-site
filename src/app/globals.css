@@ -6,6 +6,7 @@
   src: url("/fonts/acorn.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -13,6 +14,7 @@
   src: url("/fonts/gt.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 :root {
@@ -63,6 +65,29 @@ code, pre {
 
 .system-text {
   font-family: var(--systemFont);
+}
+
+/* Responsive Design - Mobile First */
+@media (max-width: 640px) {
+  :root {
+    --radius: 0.375rem;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
 }
 
 /* Modo oscuro */

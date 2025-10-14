@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Github, Twitter, Linkedin } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
 
 const socialLinks = [
   { name: "GitHub", icon: Github, href: "#" },
@@ -10,22 +12,25 @@ const socialLinks = [
   { name: "LinkedIn", icon: Linkedin, href: "#" },
 ]
 
-const quickLinks = [
-  { name: "Inicio", href: "#" },
-  { name: "Servicios", href: "#servicios" },
-  { name: "Casos", href: "#proyectos" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contacto", href: "#contacto" },
-]
-
 export default function Footer() {
+  const { language } = useLanguage()
+  const t = translations[language].footer
+  const tn = translations[language].navbar
+
+  const quickLinks = [
+    { name: tn.home, href: "#" },
+    { name: tn.services, href: "#servicios" },
+    { name: tn.cases, href: "#proyectos" },
+    { name: tn.blog, href: "#blog" },
+    { name: tn.contact, href: "#contacto" },
+  ]
   return (
     <footer className="bg-[#121212] border-t border-[#2a2a2a] py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-white font-bold text-lg mb-4">BethaLabs</h3>
-            <p className="text-[#B3B3B3] mb-4">Innovación, automatización y seguridad para tu negocio.</p>
+            <p className="text-[#B3B3B3] mb-4">{t.description}</p>
             <div className="flex space-x-4">
               {socialLinks.map((link) => (
                 <motion.a
@@ -43,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Enlaces rápidos</h3>
+            <h3 className="text-white font-bold text-lg mb-4">{t.quickLinks}</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -56,21 +61,21 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Contacto</h3>
-            <p className="text-[#B3B3B3] mb-2">¿Listo para optimizar tu negocio?</p>
+            <h3 className="text-white font-bold text-lg mb-4">{t.contactTitle}</h3>
+            <p className="text-[#B3B3B3] mb-2">{t.contactDescription}</p>
             <a href="mailto:bethalabs.dev@gmail.com" className="text-[#34A853] hover:underline block mb-3">
               bethalabs.dev@gmail.com
             </a>
-            <p className="text-[#B3B3B3] text-sm">BethaLabs — innovación, automatización y seguridad para tu negocio.</p>
+            <p className="text-[#B3B3B3] text-sm">{t.contactFooter}</p>
           </div>
         </div>
 
         <div className="border-t border-[#2a2a2a] pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-[#B3B3B3] text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} BethaLabs. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} BethaLabs. {t.rights}
           </p>
           <p className="text-[#B3B3B3] text-sm">
-            Desarrollado por <span className="text-[#34A853]">BethaLabs</span>
+            {t.developedBy} <span className="text-[#34A853]">BethaLabs</span>
           </p>
         </div>
       </div>

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
 
 const projects = [
     {
@@ -60,6 +62,9 @@ const projects = [
   ];
 
 export default function Projects() {
+  const { language } = useLanguage()
+  const t = translations[language].projects
+
   return (
     <section id="proyectos" className="py-20 bg-[#121212]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,10 +75,21 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Casos Destacados</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-            Soluciones reales que han transformado la operación de nuestros clientes
+            {t.subtitle}
           </p>
+          {language === 'en' && (
+            <motion.div
+              className="mt-4 inline-flex items-center gap-2 bg-[#34A853]/10 border border-[#34A853]/30 text-[#34A853] px-4 py-2 rounded-full text-sm"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="text-lg">🇪🇸</span>
+              <span>{t.contentNote}</span>
+            </motion.div>
+          )}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -103,6 +119,9 @@ export default function Projects() {
                     alt={project.title}
                     width={500}
                     height={300}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
                     className={`w-full ${project.featured ? 'h-full min-h-[300px]' : 'h-full'} object-cover transition-transform duration-500 group-hover:scale-105`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-60"></div>

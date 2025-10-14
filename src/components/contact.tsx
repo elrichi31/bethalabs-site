@@ -6,8 +6,13 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Github, Linkedin, Twitter } from "lucide-react"
 import emailjs from '@emailjs/browser'
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
 
 export default function Contact() {
+  const { language } = useLanguage()
+  const t = translations[language].contact
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -84,9 +89,9 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Empieza tu transformación digital</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
-            ¿Listo para optimizar tu negocio con automatización o proteger tus datos? Hablemos. En BethaLabs estamos listos para acompañarte.
+            {t.subtitle}
           </p>
         </motion.div>
 
@@ -97,11 +102,11 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Solicita tu consultoría gratuita</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">{t.formTitle}</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[#B3B3B3] mb-1">
-                  Nombre
+                  {t.form.name}
                 </label>
                 <input
                   type="text"
@@ -111,13 +116,13 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-[#1E1E1E] border border-[#333333] rounded-md focus:outline-none focus:ring-2 focus:ring-[#34A853] text-white"
-                  placeholder="Tu nombre"
+                  placeholder={t.form.name}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-[#B3B3B3] mb-1">
-                  Email
+                  {t.form.email}
                 </label>
                 <input
                   type="email"
@@ -127,13 +132,13 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-[#1E1E1E] border border-[#333333] rounded-md focus:outline-none focus:ring-2 focus:ring-[#34A853] text-white"
-                  placeholder="tu@email.com"
+                  placeholder="email@example.com"
                 />
               </div>
 
               <div>
                 <label htmlFor="company" className="block text-sm font-medium text-[#B3B3B3] mb-1">
-                  Empresa / Tipo de negocio
+                  {t.form.company}
                 </label>
                 <input
                   type="text"
@@ -142,13 +147,13 @@ export default function Contact() {
                   value={formData.company}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-[#1E1E1E] border border-[#333333] rounded-md focus:outline-none focus:ring-2 focus:ring-[#34A853] text-white"
-                  placeholder="Ej: Restaurante, Tienda online, Consultorio..."
+                  placeholder={t.form.company}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-[#B3B3B3] mb-1">
-                  ¿Qué necesitas automatizar o proteger?
+                  {t.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -158,7 +163,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-[#1E1E1E] border border-[#333333] rounded-md focus:outline-none focus:ring-2 focus:ring-[#34A853] text-white resize-none"
-                  placeholder="Cuéntanos brevemente qué proceso te gustaría automatizar o qué aspectos de seguridad te preocupan..."
+                  placeholder={t.form.message}
                 />
               </div>
 
@@ -191,10 +196,10 @@ export default function Contact() {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    Enviando...
+                    {t.form.sending}
                   </span>
                 ) : (
-                  "Enviar solicitud"
+                  t.form.submit
                 )}
               </motion.button>
 
@@ -205,7 +210,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  ✅ ¡Solicitud enviada con éxito! Nos pondremos en contacto pronto.
+                  ✅ {t.form.success}
                 </motion.div>
               )}
 
@@ -216,7 +221,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  ❌ Error al enviar. Por favor, intenta de nuevo o escríbenos directamente a bethalabs.dev@gmail.com
+                  ❌ {t.form.error}
                 </motion.div>
               )}
             </form>
@@ -229,9 +234,9 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="bg-[#1E1E1E] p-8 rounded-lg shadow-xl"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Información de contacto</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">{t.infoTitle}</h3>
             <p className="text-[#B3B3B3] mb-8">
-              También puedes contactarnos directamente por email o seguirnos en nuestras redes profesionales.
+              {t.socialTitle}
             </p>
 
             <div className="space-y-4">
@@ -242,7 +247,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-white font-medium">Email</h4>
+                  <h4 className="text-white font-medium">{t.email}</h4>
                   <p className="text-[#34A853] text-sm">bethalabs.dev@gmail.com</p>
                 </div>
               </div>

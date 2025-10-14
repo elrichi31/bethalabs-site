@@ -4,20 +4,26 @@ import "./globals.css";
 import 'highlight.js/styles/atom-one-dark.css';
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { LanguageProvider } from "@/contexts/language-context"
+import DynamicMetadata from "@/components/dynamic-metadata"
 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bethalabs.com'),
+  metadataBase: new URL('https://www.bethalabs.com'),
   title: {
     default: 'BethaLabs | Automatización y Ciberseguridad en Ecuador',
     template: '%s | BethaLabs Ecuador'
@@ -53,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_EC',
-    url: 'https://bethalabs.com',
+    url: 'https://www.bethalabs.com',
     siteName: 'BethaLabs Ecuador',
     title: 'BethaLabs | Automatización y Ciberseguridad en Ecuador',
     description: 'Transformamos negocios ecuatorianos con automatizaciones inteligentes y seguridad digital. Expertos en n8n, Make y protección de datos.',
@@ -94,11 +100,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-EC">
+    <html lang="es-EC" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>
+          <DynamicMetadata />
+          {children}
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

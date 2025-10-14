@@ -11,9 +11,9 @@ import { getFeaturedPosts } from "@/lib/blog"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "BethaLabs | Automatización y Ciberseguridad para PyMEs en Ecuador",
+  title: "BethaLabs | Automatización y Ciberseguridad Ecuador",
   description:
-    "Agencia especializada en automatización de procesos con n8n y Make, y ciberseguridad para PyMEs en Ecuador y Latinoamérica. Servicios remotos y presenciales. Optimiza tu negocio hoy.",
+    "Automatización con n8n/Make y ciberseguridad para PyMEs en Ecuador y Latinoamérica. Servicios remotos y presenciales.",
   keywords: [
     "automatización PyMEs",
     "ciberseguridad empresarial", 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "consultoría tecnológica"
   ],
   alternates: {
-    canonical: 'https://bethalabs.com',
+    canonical: 'https://www.bethalabs.com/',
   },
 }
 

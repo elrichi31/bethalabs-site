@@ -1,6 +1,10 @@
 "use client"
 
+import { useLanguage } from "@/contexts/language-context"
+
 export default function StructuredData() {
+  const { language } = useLanguage()
+  
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -8,7 +12,10 @@ export default function StructuredData() {
     "alternateName": "BethaLabs Ecuador",
     "url": "https://bethalabs.com",
     "logo": "https://bethalabs.com/logo.png",
-    "description": "Agencia ecuatoriana especializada en automatización de procesos empresariales y ciberseguridad para PyMEs. Expertos en n8n, Make, y protección digital.",
+    "description": language === 'es' 
+      ? "Agencia ecuatoriana especializada en automatización de procesos empresariales y ciberseguridad para PyMEs. Expertos en n8n, Make, y protección digital."
+      : "Ecuadorian agency specialized in business process automation and cybersecurity for SMEs. Experts in n8n, Make, and digital protection.",
+    "inLanguage": [language === 'es' ? 'es-EC' : 'en-US'],
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "EC",
@@ -73,14 +80,18 @@ export default function StructuredData() {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Servicios de Automatización y Ciberseguridad",
+      "name": language === 'es' 
+        ? "Servicios de Automatización y Ciberseguridad"
+        : "Automation and Cybersecurity Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "BethaFlow - Automatización de Procesos",
-            "description": "Automatización de procesos empresariales con n8n y Make. Facturación automática, integración de sistemas, flujos de trabajo inteligentes.",
+            "name": "BethaFlow - " + (language === 'es' ? "Automatización de Procesos" : "Process Automation"),
+            "description": language === 'es'
+              ? "Automatización de procesos empresariales con n8n y Make. Facturación automática, integración de sistemas, flujos de trabajo inteligentes."
+              : "Business process automation with n8n and Make. Automatic billing, system integration, intelligent workflows.",
             "provider": {
               "@type": "Organization",
               "name": "BethaLabs"
@@ -91,8 +102,10 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "BethaSecure - Ciberseguridad",
-            "description": "Consultoría en ciberseguridad, auditorías de seguridad, protección de datos, cumplimiento normativo para PyMEs.",
+            "name": "BethaSecure - " + (language === 'es' ? "Ciberseguridad" : "Cybersecurity"),
+            "description": language === 'es'
+              ? "Consultoría en ciberseguridad, auditorías de seguridad, protección de datos, cumplimiento normativo para PyMEs."
+              : "Cybersecurity consulting, security audits, data protection, regulatory compliance for SMEs.",
             "provider": {
               "@type": "Organization",
               "name": "BethaLabs"

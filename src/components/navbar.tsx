@@ -6,19 +6,24 @@ import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
-
-const navLinks = [
-    { name: "Inicio", href: "/" },
-    { name: "Servicios", href: "/#servicios" },
-    { name: "Casos", href: "/#proyectos" },
-    { name: "Blog", href: "/#blog" },
-    { name: "Contacto", href: "/#contacto" },
-]
+import { useLanguage } from "@/contexts/language-context"
+import { translations } from "@/lib/translations"
+import LanguageSelector from "./language-selector"
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const pathname = usePathname()
+    const { language } = useLanguage()
+    const t = translations[language].navbar
+
+    const navLinks = [
+        { name: t.home, href: "/" },
+        { name: t.services, href: "/#servicios" },
+        { name: t.cases, href: "/#proyectos" },
+        { name: t.blog, href: "/#blog" },
+        { name: t.contact, href: "/#contacto" },
+    ]
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,7 +58,9 @@ export default function Navbar() {
                                     src="/logo.png" 
                                     alt="BethaLabs Logo" 
                                     width={30} 
-                                    height={30} 
+                                    height={30}
+                                    priority={true}
+                                    loading="eager"
                                     className="mr-2 hover:scale-110 transition-transform duration-300" 
                                 />
                                 <span className="text-white font-bold text-lg">BethaLabs</span>
@@ -70,10 +77,16 @@ export default function Navbar() {
                             ))}
                         </motion.nav>
 
+                        {/* Language Selector - Desktop */}
+                        <div className="hidden md:block">
+                            <LanguageSelector />
+                        </div>
                     </div>
 
-                    {/* Mobile menu button */}
-                    <div className="md:hidden">
+                    {/* Language Selector - Mobile */}
+                    <div className="md:hidden flex items-center gap-3">
+                        <LanguageSelector />
+                        {/* Mobile menu button */}
                         <button
                             type="button"
                             className="text-gray-300 hover:text-white"
