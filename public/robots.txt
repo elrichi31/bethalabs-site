@@ -46,4 +46,4 @@ Disallow: /_next/static/
 Disallow: /admin/
 
 # Sitemap
-Sitemap: https://bethalabs.com/sitemap.xml
+Sitemap: https://www.bethalabs.com/sitemap.xml

@@ -10,8 +10,8 @@ export default function StructuredData() {
     "@type": "Organization",
     "name": "BethaLabs",
     "alternateName": "BethaLabs Ecuador",
-    "url": "https://bethalabs.com",
-    "logo": "https://bethalabs.com/logo.png",
+    "url": "https://www.bethalabs.com",
+    "logo": "https://www.bethalabs.com/logo.png",
     "description": language === 'es' 
       ? "Agencia ecuatoriana especializada en automatización de procesos empresariales y ciberseguridad para PyMEs. Expertos en n8n, Make, y protección digital."
       : "Ecuadorian agency specialized in business process automation and cybersecurity for SMEs. Experts in n8n, Make, and digital protection.",
@@ -120,7 +120,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "BethaLabs",
-    "image": "https://bethalabs.com/logo.png",
+    "image": "https://www.bethalabs.com/logo.png",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -133,7 +133,7 @@ export default function StructuredData() {
       "latitude": "-0.1807",
       "longitude": "-78.4678"
     },
-    "url": "https://bethalabs.com",
+    "url": "https://www.bethalabs.com",
     "telephone": "+593-XX-XXX-XXXX",
     "openingHoursSpecification": [
       {
@@ -159,25 +159,25 @@ export default function StructuredData() {
         "@type": "ListItem",
         "position": 1,
         "name": "Inicio",
-        "item": "https://bethalabs.com"
+        "item": "https://www.bethalabs.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Servicios",
-        "item": "https://bethalabs.com/#servicios"
+        "item": "https://www.bethalabs.com/#servicios"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Blog",
-        "item": "https://bethalabs.com/blog"
+        "item": "https://www.bethalabs.com/blog"
       },
       {
         "@type": "ListItem",
         "position": 4,
         "name": "Contacto",
-        "item": "https://bethalabs.com/#contacto"
+        "item": "https://www.bethalabs.com/#contacto"
       }
     ]
   }

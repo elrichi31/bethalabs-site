@@ -79,7 +79,7 @@ export function getMetadataByLanguage(lang: 'es' | 'en'): Metadata {
   const meta = metadataByLanguage[lang];
   
   return {
-    metadataBase: new URL('https://bethalabs.com'),
+    metadataBase: new URL('https://www.bethalabs.com'),
     title: meta.title,
     description: meta.description,
     keywords: [...meta.keywords],
@@ -92,17 +92,17 @@ export function getMetadataByLanguage(lang: 'es' | 'en'): Metadata {
       telephone: false,
     },
     alternates: {
-      canonical: 'https://bethalabs.com',
+      canonical: 'https://www.bethalabs.com',
       languages: {
-        'es-EC': 'https://bethalabs.com?lang=es',
-        'en-US': 'https://bethalabs.com?lang=en',
+        'es-EC': 'https://www.bethalabs.com?lang=es',
+        'en-US': 'https://www.bethalabs.com?lang=en',
       }
     },
     openGraph: {
       type: 'website',
       locale: meta.openGraph.locale,
       alternateLocale: lang === 'es' ? ['en_US'] : ['es_EC'],
-      url: 'https://bethalabs.com',
+      url: 'https://www.bethalabs.com',
       siteName: meta.openGraph.siteName,
       title: meta.openGraph.title,
       description: meta.openGraph.description,

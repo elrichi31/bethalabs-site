@@ -93,9 +93,9 @@ export default function DynamicMetadata() {
       }
     };
 
-    addHreflangLink('es-EC', 'https://bethalabs.com?lang=es');
-    addHreflangLink('en-US', 'https://bethalabs.com?lang=en');
-    addHreflangLink('x-default', 'https://bethalabs.com');
+    addHreflangLink('es-EC', 'https://www.bethalabs.com?lang=es');
+    addHreflangLink('en-US', 'https://www.bethalabs.com?lang=en');
+    addHreflangLink('x-default', 'https://www.bethalabs.com');
 
   }, [language]);
 

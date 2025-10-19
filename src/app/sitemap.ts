@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts()
   
   const blogPosts = posts.map((post) => ({
-    url: `https://bethalabs.com/blog/${post.slug}`,
+    url: `https://www.bethalabs.com/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
@@ -13,13 +13,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: 'https://bethalabs.com',
+      url: 'https://www.bethalabs.com',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://bethalabs.com/blog',
+      url: 'https://www.bethalabs.com/blog',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
