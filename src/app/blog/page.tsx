@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     "buenas prácticas IT"
   ],
   alternates: {
-    canonical: 'https://bethalabs.com/blog',
+    canonical: 'https://www.bethalabs.com/blog',
   },
   openGraph: {
     title: 'Blog de Automatización y Ciberseguridad | BethaLabs Ecuador',
     description: 'Guías prácticas, casos de éxito y recursos sobre automatización y ciberseguridad para PyMEs ecuatorianas',
-    url: 'https://bethalabs.com/blog',
+    url: 'https://www.bethalabs.com/blog',
     type: 'website',
     locale: 'es_EC',
   },

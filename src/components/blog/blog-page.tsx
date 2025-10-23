@@ -98,6 +98,9 @@ export default function BlogPage({ posts }: BlogPageProps) {
                       alt={post.title}
                       width={800}
                       height={400}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={index < 3}
+                      loading={index < 3 ? "eager" : "lazy"}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute top-4 left-4">

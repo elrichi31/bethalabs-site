@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: [...post.tags, 'Ecuador', 'PyMEs Ecuador', 'BethaLabs'],
     authors: [{ name: post.author }],
     alternates: {
-      canonical: `https://bethalabs.com/blog/${slug}`,
+      canonical: `https://www.bethalabs.com/blog/${slug}`,
     },
     openGraph: {
       title: post.title,
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       authors: [post.author],
       tags: post.tags,
       locale: 'es_EC',
-      url: `https://bethalabs.com/blog/${slug}`,
+      url: `https://www.bethalabs.com/blog/${slug}`,
       images: [
         {
           url: post.image,

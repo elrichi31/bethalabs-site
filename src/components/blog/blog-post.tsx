@@ -223,9 +223,9 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
               src={post.image}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, 1200px"
               className="object-cover"
               priority
-              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-60"></div>
           </div>

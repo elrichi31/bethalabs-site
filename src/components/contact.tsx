@@ -253,7 +253,9 @@ export default function Contact() {
               </div>
 
               <a
-                href="#"
+                href="https://github.com/bethalabs"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center p-4 bg-[#121212] rounded-lg hover:bg-[#1a1a1a] transition-colors duration-300"
               >
                 <Github className="h-6 w-6 text-white mr-4" />
@@ -264,7 +266,9 @@ export default function Contact() {
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com/company/bethalabs"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center p-4 bg-[#121212] rounded-lg hover:bg-[#1a1a1a] transition-colors duration-300"
               >
                 <Linkedin className="h-6 w-6 text-white mr-4" />
@@ -275,7 +279,9 @@ export default function Contact() {
               </a>
 
               <a
-                href="#"
+                href="https://twitter.com/bethalabs"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center p-4 bg-[#121212] rounded-lg hover:bg-[#1a1a1a] transition-colors duration-300"
               >
                 <Twitter className="h-6 w-6 text-white mr-4" />

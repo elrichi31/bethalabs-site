@@ -82,6 +82,8 @@ export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProp
                     alt={post.title}
                     width={400}
                     height={200}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Badge de categoría */}
