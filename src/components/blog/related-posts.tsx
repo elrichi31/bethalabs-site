@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import type { BlogPost } from "@/lib/blog"
 import { ArrowRight } from "lucide-react"
+import { useEffect } from "react"
 
 interface RelatedPostsProps {
   currentPost: BlogPost
@@ -39,6 +40,20 @@ export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProp
     }))
     .sort((a, b) => b.similarity - a.similarity)
     .slice(0, 2) // Top 2 más relacionados
+
+  // Prefetch inteligente: precargar los posts relacionados
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      relatedPosts.forEach(post => {
+        requestIdleCallback(() => {
+          const link = document.createElement('link')
+          link.rel = 'prefetch'
+          link.href = `/blog/${post.slug}`
+          document.head.appendChild(link)
+        })
+      })
+    }
+  }, [relatedPosts])
 
   // Si no hay posts relacionados, no mostrar nada
   if (relatedPosts.length === 0) {
@@ -85,6 +100,8 @@ export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProp
                     sizes="(max-width: 768px) 100vw, 50vw"
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxRTFFMUU7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyQTJBMkE7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg=="
                   />
                   {/* Badge de categoría */}
                   <div className="absolute top-4 left-4">

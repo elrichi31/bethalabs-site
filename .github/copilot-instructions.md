@@ -1,5 +1,30 @@
 # BethaLabs Site - AI Coding Agent Instructions
 
+## ⚠️ CRITICAL RULES - READ FIRST
+
+### Output & Communication Guidelines
+
+**NEVER create documentation files (.md) for changes or summaries**
+
+When making changes:
+- ✅ **DO**: Provide a brief summary in the chat (2-5 sentences max)
+- ✅ **DO**: List ONLY the files modified (no detailed explanations unless asked)
+- ✅ **DO**: Mention next steps ONLY if critical
+- ❌ **DON'T**: Create .md files for change logs, summaries, or documentation unless specifically requested
+- ❌ **DON'T**: Create README files for every feature
+- ❌ **DON'T**: Generate long reports or documentation after every change
+- ❌ **DON'T**: Create instruction files or guides unless explicitly asked
+
+**Summary Format (in chat only):**
+```
+✅ Done: [Brief description]
+Files: file1.tsx, file2.ts
+```
+
+Keep responses SHORT and actionable. No walls of text or unnecessary documentation files.
+
+---
+
 ## Project Overview
 BethaLabs is a personal portfolio/landing page showcasing cybersecurity and web development projects. Built with Next.js 15.2, React 19, TypeScript, and Tailwind CSS 4, featuring Framer Motion animations throughout.
 
@@ -163,25 +188,6 @@ Edit `projects` array in `src/components/projects.tsx`:
 - Don't use colors outside the defined palette
 - Don't use `<a>` tags for internal navigation - use Next.js `Link` only for hash anchors
 - **DON'T create markdown files for change summaries** - Give brief summaries in chat only
-
-## Output & Communication Guidelines
-
-### When Making Changes:
-- ✅ **DO**: Provide a concise summary in the chat conversation (2-5 sentences max)
-- ✅ **DO**: List ONLY the files modified (no detailed explanations unless asked)
-- ✅ **DO**: Mention next steps ONLY if critical
-- ❌ **DON'T**: Create .md files for change logs, summaries, or documentation unless specifically requested
-- ❌ **DON'T**: Create README files for every feature
-- ❌ **DON'T**: Generate long reports or documentation after every change
-- ❌ **DON'T**: Create instruction files or guides unless explicitly asked
-
-### Summary Format (in chat):
-```
-✅ Done: [Brief description of what was changed]
-Files: file1.tsx, file2.md
-```
-
-Keep responses SHORT and actionable. No walls of text or unnecessary documentation files.
 
 ### Pricing Policy
 - ❌ **NEVER include specific prices** in public-facing content (blog, components, pages)

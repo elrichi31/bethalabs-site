@@ -3,11 +3,31 @@
 import { motion, useScroll, useSpring } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { Calendar, Clock, Tag, ArrowLeft, Share2, Check } from "lucide-react"
+import { Clock, Tag, ArrowLeft, Share2, Check } from "lucide-react"
 import { useRef, useState, useEffect } from "react"
-import RelatedPosts from "./related-posts"
+import dynamic from "next/dynamic"
 import type { BlogPost as BlogPostType } from "@/lib/blog"
-import confetti from "canvas-confetti"
+import { BlogPostStyles } from "./blog-post-styles"
+import { useReducedMotion } from "@/lib/motion-utils"
+
+// Lazy load de componentes pesados
+const RelatedPosts = dynamic(() => import("./related-posts"), {
+  loading: () => (
+    <div className="mt-16 border-t border-[#2A2A2A] pt-12">
+      <div className="animate-pulse">
+        <div className="h-8 bg-[#1E1E1E] rounded w-64 mb-6"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-[#1E1E1E] rounded-lg h-80"></div>
+          <div className="bg-[#1E1E1E] rounded-lg h-80"></div>
+        </div>
+      </div>
+    </div>
+  ),
+  ssr: false, // No necesario en SSR, solo en cliente
+})
+
+// Lazy load de confetti solo cuando se necesite
+const loadConfetti = () => import("canvas-confetti")
 
 interface BlogPostProps {
   post: BlogPostType
@@ -19,6 +39,7 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
   const [copied, setCopied] = useState(false)
   const [likes, setLikes] = useState(0)
   const [hasLiked, setHasLiked] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -26,8 +47,8 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
   })
   
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: prefersReducedMotion ? 200 : 100,
+    damping: prefersReducedMotion ? 50 : 30,
     restDelta: 0.001
   })
 
@@ -56,7 +77,7 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
   }
 
   // Función para dar/quitar like con confeti (toggle)
-  const handleLike = () => {
+  const handleLike = async () => {
     if (hasLiked) {
       // Unlike: Quitar like
       const newLikes = Math.max(0, likes - 1)
@@ -71,6 +92,10 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
       setHasLiked(true)
       localStorage.setItem(`blog-likes-${post.slug}`, newLikes.toString())
       localStorage.setItem(`blog-liked-${post.slug}`, 'true')
+      
+      // Cargar confetti solo cuando se necesita (lazy)
+      const confettiModule = await loadConfetti()
+      const confetti = confettiModule.default
       
       // Confeti centrado en el botón (solo al dar like)
       const rect = document.getElementById('like-button')?.getBoundingClientRect()
@@ -226,6 +251,8 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
               sizes="(max-width: 768px) 100vw, 1200px"
               className="object-cover"
               priority
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMUUxRTFFO3N0b3Atb3BhY2l0eToxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMkEyQTJBO3N0b3Atb3BhY2l0eToxIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSJ1cmwoI2EpIi8+PC9zdmc+"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-60"></div>
           </div>
@@ -246,396 +273,8 @@ export default function BlogPost({ post, allPosts }: BlogPostProps) {
             />
           </div>
 
-          {/* Estilos CSS inline para el contenido del blog */}
-          <style jsx global>{`
-            .blog-content {
-              color: #B3B3B3;
-              font-size: 1rem;
-              line-height: 1.7;
-            }
-
-            /* Títulos */
-            .blog-content h1 {
-              color: #ffffff;
-              font-size: 2rem;
-              font-weight: 700;
-              margin-top: 2rem;
-              margin-bottom: 1.25rem;
-              line-height: 1.2;
-              letter-spacing: -0.02em;
-            }
-
-            .blog-content h2 {
-              color: #ffffff;
-              font-size: 1.75rem;
-              font-weight: 700;
-              margin-top: 2.5rem;
-              margin-bottom: 1rem;
-              padding-bottom: 0.75rem;
-              border-bottom: 2px solid #34A853;
-              line-height: 1.3;
-            }
-
-            .blog-content h3 {
-              color: #ffffff;
-              font-size: 1.35rem;
-              font-weight: 600;
-              margin-top: 1.75rem;
-              margin-bottom: 0.875rem;
-              line-height: 1.4;
-            }
-
-            .blog-content h4 {
-              color: #34A853;
-              font-size: 1.15rem;
-              font-weight: 600;
-              margin-top: 1.25rem;
-              margin-bottom: 0.625rem;
-            }
-
-            /* Párrafos */
-            .blog-content p {
-              color: #B3B3B3;
-              margin-bottom: 1.25rem;
-              line-height: 1.7;
-            }
-
-            .blog-content p strong {
-              color: #ffffff;
-              font-weight: 600;
-            }
-
-            .blog-content p em {
-              color: #34A853;
-              font-style: italic;
-            }
-
-            /* Enlaces */
-            .blog-content a {
-              color: #34A853;
-              text-decoration: none;
-              border-bottom: 1px solid transparent;
-              transition: all 0.3s ease;
-            }
-
-            .blog-content a:hover {
-              border-bottom-color: #34A853;
-              color: #2a8644;
-            }
-
-            /* Listas */
-            .blog-content ul,
-            .blog-content ol {
-              margin-bottom: 1.5rem;
-              padding-left: 1.5rem;
-              color: #B3B3B3;
-            }
-
-            .blog-content ul {
-              list-style-type: none;
-            }
-
-            .blog-content ul li {
-              position: relative;
-              margin-bottom: 0.75rem;
-              padding-left: 1.5rem;
-              line-height: 1.7;
-            }
-
-            .blog-content ul li::before {
-              content: "→";
-              color: #34A853;
-              font-weight: bold;
-              position: absolute;
-              left: 0;
-            }
-
-            .blog-content ol {
-              list-style-type: decimal;
-              list-style-position: outside;
-            }
-
-            .blog-content ol li {
-              margin-bottom: 0.75rem;
-              padding-left: 0.5rem;
-              line-height: 1.7;
-            }
-
-            .blog-content ol li::marker {
-              color: #34A853;
-              font-weight: 600;
-            }
-
-            /* Código inline */
-            .blog-content code {
-              background-color: #1E1E1E;
-              color: #34A853;
-              padding: 0.25rem 0.5rem;
-              border-radius: 0.25rem;
-              font-size: 0.9em;
-              font-family: 'Courier New', monospace;
-              border: 1px solid #333333;
-            }
-
-            /* Bloques de código */
-            .blog-content pre {
-              background: #282c34;
-              border: 1px solid #3e4451;
-              border-radius: 0.75rem;
-              padding: 1.5rem;
-              margin: 2rem 0;
-              overflow-x: auto;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-              position: relative;
-            }
-
-            .blog-content pre code {
-              background-color: transparent;
-              color: #abb2bf;
-              padding: 0;
-              border: none;
-              font-size: 0.9rem;
-              line-height: 1.6;
-              display: block;
-              font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            }
-
-            /* Syntax highlighting - colores personalizados */
-            .blog-content .hljs-comment,
-            .blog-content .hljs-quote {
-              color: #5c6370;
-              font-style: italic;
-            }
-
-            .blog-content .hljs-keyword,
-            .blog-content .hljs-selector-tag,
-            .blog-content .hljs-literal,
-            .blog-content .hljs-section,
-            .blog-content .hljs-link {
-              color: #c678dd;
-            }
-
-            .blog-content .hljs-function .hljs-keyword {
-              color: #61afef;
-            }
-
-            .blog-content .hljs-string,
-            .blog-content .hljs-title,
-            .blog-content .hljs-name,
-            .blog-content .hljs-type,
-            .blog-content .hljs-attribute,
-            .blog-content .hljs-symbol,
-            .blog-content .hljs-bullet,
-            .blog-content .hljs-addition,
-            .blog-content .hljs-variable,
-            .blog-content .hljs-template-tag,
-            .blog-content .hljs-template-variable {
-              color: #98c379;
-            }
-
-            .blog-content .hljs-number {
-              color: #d19a66;
-            }
-
-            .blog-content .hljs-built_in,
-            .blog-content .hljs-builtin-name,
-            .blog-content .hljs-params,
-            .blog-content .hljs-attr {
-              color: #e6c07b;
-            }
-
-            .blog-content .hljs-function,
-            .blog-content .hljs-class {
-              color: #61afef;
-            }
-
-            /* Citas */
-            .blog-content blockquote {
-              border-left: 4px solid #34A853;
-              background: linear-gradient(135deg, #1E1E1E 0%, #252525 100%);
-              padding: 1.75rem 2rem 1.75rem 3rem;
-              margin: 2rem 0;
-              border-radius: 0 0.75rem 0.75rem 0;
-              font-style: italic;
-              color: #e0e0e0;
-              font-size: 1.05rem;
-              line-height: 1.8;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-              position: relative;
-            }
-
-            .blog-content blockquote::before {
-              content: '"';
-              position: absolute;
-              top: 10px;
-              left: 15px;
-              font-size: 3.5rem;
-              color: #34A853;
-              opacity: 0.4;
-              font-family: Georgia, serif;
-              line-height: 1;
-              font-style: normal;
-            }
-
-            .blog-content blockquote p {
-              margin-bottom: 0.5rem;
-              position: relative;
-              z-index: 1;
-              color: #e0e0e0;
-            }
-
-            .blog-content blockquote p:last-child {
-              margin-bottom: 0;
-            }
-
-            /* Imágenes */
-            .blog-content img {
-              max-width: 100%;
-              height: auto;
-              border-radius: 0.75rem;
-              margin: 2rem 0;
-              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-              border: 1px solid #2a2a2a;
-            }
-
-            /* Línea horizontal */
-            .blog-content hr {
-              border: none;
-              border-top: 2px solid #2a2a2a;
-              margin: 3rem 0;
-            }
-
-            /* Tablas */
-            .blog-content table {
-              width: 100%;
-              border-collapse: separate;
-              border-spacing: 0;
-              margin: 2rem 0;
-              background-color: #1E1E1E;
-              border-radius: 0.75rem;
-              overflow: hidden;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-              display: table;
-            }
-
-            .blog-content table thead {
-              background: linear-gradient(135deg, #34A853 0%, #2a8644 100%);
-            }
-
-            .blog-content table th {
-              color: #ffffff;
-              padding: 1rem 1.25rem;
-              text-align: left;
-              font-weight: 600;
-              font-size: 0.95rem;
-              text-transform: uppercase;
-              letter-spacing: 0.5px;
-              white-space: nowrap;
-            }
-
-            .blog-content table td {
-              padding: 1rem 1.25rem;
-              border-bottom: 1px solid #2a2a2a;
-              color: #e0e0e0;
-              font-size: 0.95rem;
-            }
-
-            .blog-content table tbody tr {
-              transition: background-color 0.2s ease;
-            }
-
-            .blog-content table tbody tr:hover {
-              background-color: #252525;
-            }
-
-            .blog-content table tr:last-child td {
-              border-bottom: none;
-            }
-
-            .blog-content table tbody tr:nth-child(even) {
-              background-color: rgba(255, 255, 255, 0.02);
-            }
-
-            /* Responsive para tablas en móvil */
-            @media (max-width: 768px) {
-              .blog-content table {
-                font-size: 0.85rem;
-              }
-              
-              .blog-content table th,
-              .blog-content table td {
-                padding: 0.75rem 0.5rem;
-              }
-            }
-
-            /* Mejora para emojis y caracteres especiales */
-            .blog-content p:has(> strong:only-child) {
-              background-color: #1E1E1E;
-              padding: 1rem 1.5rem;
-              border-radius: 0.5rem;
-              border-left: 4px solid #34A853;
-            }
-
-            /* Cajas de nota/tip (cuando empiezan con emoji) */
-            .blog-content p:first-of-type strong {
-              display: inline-flex;
-              align-items: center;
-              gap: 0.5rem;
-            }
-
-            /* Destacados especiales */
-            .blog-content strong:contains("✅"),
-            .blog-content strong:contains("❌"),
-            .blog-content strong:contains("⚠️"),
-            .blog-content strong:contains("💡"),
-            .blog-content strong:contains("📧"),
-            .blog-content strong:contains("🚀") {
-              color: #34A853;
-            }
-
-            /* Secciones con emojis al inicio */
-            .blog-content h2:has(::first-letter):matches([data-emoji]),
-            .blog-content h3:has(::first-letter):matches([data-emoji]) {
-              display: flex;
-              align-items: center;
-              gap: 0.75rem;
-            }
-
-            /* Mejora visual para listas con checkmarks */
-            .blog-content ul li:contains("✅") {
-              background-color: rgba(52, 168, 83, 0.05);
-              padding: 0.75rem;
-              padding-left: 2.5rem;
-              border-radius: 0.5rem;
-              margin-bottom: 0.5rem;
-              border-left: 3px solid #34A853;
-            }
-
-            .blog-content ul li:contains("❌") {
-              background-color: rgba(239, 68, 68, 0.05);
-              padding: 0.75rem;
-              padding-left: 2.5rem;
-              border-radius: 0.5rem;
-              margin-bottom: 0.5rem;
-              border-left: 3px solid #ef4444;
-            }
-
-            /* Espaciado mejorado */
-            .blog-content > *:first-child {
-              margin-top: 0;
-            }
-
-            .blog-content > *:last-child {
-              margin-bottom: 0;
-            }
-
-            /* Checkmarks y emojis */
-            .blog-content li:has(::before):contains("✅"),
-            .blog-content li:has(::before):contains("❌"),
-            .blog-content li:has(::before):contains("📧") {
-              padding-left: 2rem;
-            }
-          `}</style>
+          {/* Estilos CSS optimizados (extraídos a componente separado) */}
+          <BlogPostStyles />
         </motion.article>
 
         {/* CTA al final del artículo */}
