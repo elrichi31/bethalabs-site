@@ -76,13 +76,12 @@ export default function About() {
               <Image
                 src="/about.webp"
                 alt="BethaLabs"
-                width={400}
-                height={200}
+                width={600}
+                height={600}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                priority={false}
-                loading="lazy"
                 className="w-full h-auto rounded-2xl"
               />
+
               <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-60"></div>
             </div>
 

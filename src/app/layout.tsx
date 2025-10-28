@@ -101,6 +101,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-EC" suppressHydrationWarning>
+      <head>
+        {/* Preconnect para reducir latencia de fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Critical CSS inline para hero above-the-fold */}
+        <style dangerouslySetInnerHTML={{__html: `
+          html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
+          body{background:#121212;color:#fff;font-family:var(--bodyFont),sans-serif}
+          .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background:#121212}
+          .navbar{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+        `}} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
