@@ -6,7 +6,7 @@
   src: url("/fonts/acorn.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -14,7 +14,7 @@
   src: url("/fonts/gt.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
