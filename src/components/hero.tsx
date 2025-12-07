@@ -1,128 +1,169 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Shield, Code } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Zap, Shield, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { translations } from "@/lib/translations";
 
 export default function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const [isMobile, setIsMobile] = useState(true);
   const { language } = useLanguage();
   const t = translations[language].hero;
+  const reduceMotion = useReducedMotion();
 
-  // Detectar si es mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  // Animación simple respetando preferencias del usuario
+  const fadeUp = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+      };
 
-  // Manejo del mouse - solo en desktop
-  useEffect(() => {
-    if (isMobile) return;
+  const stats = [
+    { value: "20+", label: "Automatizaciones" },
+    { value: "24/7", label: "Soporte activo" },
+    { value: "100%", label: "Satisfacción" },
+  ];
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isMobile]);
-
-  // Manejo del tamaño de la ventana
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Función para calcular el movimiento de los íconos flotantes
-  const calculateTranslate = (axis: "x" | "y", factor = 20) => {
-    if (windowSize.width === 0 || windowSize.height === 0) return 0;
-    const value = axis === "x" ? mousePosition.x : mousePosition.y;
-    const maxValue = axis === "x" ? windowSize.width : windowSize.height;
-    return (value / maxValue - 0.5) * factor;
-  };
+  const features = [
+    { icon: TrendingUp, label: "Tiempo real" },
+    { icon: Zap, label: "Rápido" },
+    { icon: Shield, label: "Seguro" },
+  ];
 
   return (
-    <section className="relative py-40 md:py-38 lg:py-68 overflow-hidden">
-      {/* Fondo estático con los "+" */}
-      <div className="absolute -inset-[10px] opacity-15 pointer-events-none">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+      {/* Fondo con gradiente radial */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <div
-          className="absolute -inset-[10px]"
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%2334A853' fillOpacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(52, 168, 83, 0.2), transparent 70%)",
+          }}
+        />
+        {/* Segundo gradiente inferior */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(52, 168, 83, 0.1), transparent 60%)",
           }}
         />
       </div>
 
+      {/* Glow orbs decorativos - luces verdes degradadas */}
+      <div
+        className="absolute top-20 left-1/4 w-80 h-80 rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(52, 168, 83, 0.25) 0%, rgba(52, 168, 83, 0.05) 50%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
+      <div
+        className="absolute bottom-20 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(52, 168, 83, 0.2) 0%, rgba(52, 168, 83, 0.03) 50%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
+      />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(52, 168, 83, 0.08) 0%, transparent 60%)",
+          filter: "blur(100px)",
+        }}
+      />
+
       {/* Contenido principal */}
-      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-8">
-            <h2 className="text-[#34A853] font-bold text-lg mb-2">{t.subtitle}</h2>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
-              {t.title}{" "}
-              <span className="text-[#34A853]">{t.titleHighlight1}</span> {t.titleAnd}{" "}
-              <span className="text-[#34A853]">{t.titleHighlight2}</span>
-            </h1>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Badge superior */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-[#34A853]/30 bg-[#34A853]/5 text-xs text-[#B3B3B3] backdrop-blur-sm"
+          >
+            <Zap className="w-3 h-3 text-[#34A853]" aria-hidden />
+            <span>Simple y poderoso</span>
           </motion.div>
 
-          <motion.p
-            className="text-lg md:text-xl text-[#B3B3B3] mb-10 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          {/* Título principal */}
+          <motion.h1
+            {...fadeUp}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-5"
           >
-            {t.description}
+            {t.title}{" "}
+            <span className="text-[#34A853] relative inline-block">
+              {t.titleHighlight1}
+              <span
+                className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#34A853] rounded-full"
+                aria-hidden
+              />
+            </span>
+          </motion.h1>
+
+          {/* Descripción */}
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="text-base md:text-lg text-[#B3B3B3] mb-8 max-w-xl mx-auto"
+          >
+            Automatiza procesos y protege tu negocio con soluciones a medida.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex justify-center space-x-4">
-            <motion.a
+          {/* CTAs */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
+          >
+            <a
               href="#contacto"
-              className="inline-flex items-center px-6 py-3 bg-[#34A853] text-white font-medium rounded-full shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(52, 168, 83, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-[#34A853] text-white text-sm font-semibold rounded-full shadow-lg shadow-[#34A853]/25 hover:shadow-[#34A853]/40 hover:bg-[#2a8644] transition-all duration-300"
             >
               {t.ctaPrimary}
-            </motion.a>
-            <motion.a
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden />
+            </a>
+            <a
               href="#servicios"
-              className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-[#34A853] text-[#34A853] font-medium rounded-full hover:bg-[#34A853] hover:text-white transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-6 py-3 border border-[#333] text-white text-sm font-medium rounded-full hover:bg-[#1E1E1E] hover:border-[#444] transition-all duration-300"
             >
               {t.ctaSecondary}
-            </motion.a>
+            </a>
+          </motion.div>
+
+          {/* Feature pills */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="flex flex-wrap items-center justify-center gap-2 mb-12"
+          >
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-full text-xs backdrop-blur-sm hover:border-[#34A853] transition-colors duration-300"
+              >
+                <feature.icon className="w-3 h-3 text-[#34A853]" aria-hidden />
+                <span className="text-[#B3B3B3]">{feature.label}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Stats row */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.55 }}
+            className="flex items-center justify-center gap-8 md:gap-12"
+          >
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-xl md:text-2xl font-bold text-white mb-0.5">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-[#666]">{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
         </div>
-
-        {/* Íconos flotantes animados en las esquinas - Ocultos en mobile */}
-        <motion.div
-          className="hidden md:block absolute top-10 left-10"
-          animate={{ x: calculateTranslate("x", -15), y: calculateTranslate("y", -15) }}
-          transition={{ ease: "linear", duration: 0.2 }}
-        >
-          <Shield className="text-[#34A853] opacity-100" size={48} />
-        </motion.div>
-        <motion.div
-          className="hidden md:block absolute bottom-10 right-10"
-          animate={{ x: calculateTranslate("x", 15), y: calculateTranslate("y", 15) }}
-          transition={{ ease: "linear", duration: 0.2 }}
-        >
-          <Code className="text-[#34A853] opacity-100" size={48} />
-        </motion.div>
       </div>
     </section>
   );

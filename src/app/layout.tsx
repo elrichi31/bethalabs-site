@@ -102,16 +102,16 @@ export default function RootLayout({
   return (
     <html lang="es-EC" suppressHydrationWarning>
       <head>
-        {/* Preconnect para reducir latencia de fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload custom fonts - critical for LCP */}
+        <link rel="preload" href="/fonts/acorn.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/gt.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         
-        {/* Critical CSS inline para hero above-the-fold */}
+        {/* Critical CSS inline - renders above-the-fold instantly */}
         <style dangerouslySetInnerHTML={{__html: `
-          html,body{margin:0;padding:0;width:100%;overflow-x:hidden}
-          body{background:#121212;color:#fff;font-family:var(--bodyFont),sans-serif}
-          .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background:#121212}
-          .navbar{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+          @font-face{font-family:"Acorn";src:url("/fonts/acorn.woff") format("woff");font-display:swap}
+          @font-face{font-family:"GT Walsheim";src:url("/fonts/gt.woff") format("woff");font-display:swap}
+          :root{--titleFont:"Acorn",system-ui,sans-serif;--bodyFont:"GT Walsheim",system-ui,sans-serif}
+          html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:var(--bodyFont)}
         `}} />
       </head>
       <body
