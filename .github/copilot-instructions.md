@@ -26,7 +26,11 @@ Keep responses SHORT and actionable. No walls of text or unnecessary documentati
 ---
 
 ## Project Overview
-BethaLabs is a personal portfolio/landing page showcasing cybersecurity and web development projects. Built with Next.js 15.2, React 19, TypeScript, and Tailwind CSS 4, featuring Framer Motion animations throughout.
+BethaLabs is a personal portfolio/landing page showcasing **web development and automation** projects. Built with Next.js 15.2, React 19, TypeScript, and Tailwind CSS 4, featuring Framer Motion animations throughout.
+
+**Core Services:**
+- **BethaWeb**: Professional web development (landing pages, e-commerce, portfolios)
+- **BethaFlow**: Business automation (n8n, WhatsApp chatbots, integrations)
 
 ## Architecture & Structure
 
@@ -52,7 +56,7 @@ All UI components live in `src/components/` as standalone, self-contained module
 
 ### Key Dependencies
 - **Framer Motion** (v12.4.7): Core animation library - all sections use motion components
-- **Lucide React**: Icon library (Menu, X, Shield, Code, ArrowRight, Github, etc.)
+- **Lucide React**: Icon library (Menu, X, Globe, Code, ArrowRight, Github, Zap, etc.)
 - **Next.js 15.2** with React 19: Latest stable versions, App Router only
 
 ## Styling Conventions
@@ -152,7 +156,7 @@ Add `delay: index * 0.1` to transition for sequential reveals
 ## Content & Localization
 - **Language**: All UI text in Spanish (for portfolio owner "BethaLabs")
 - **Metadata**: Defined in `page.tsx` - update for SEO (title, description, keywords)
-- **Theme**: Cybersecurity + Web Development focus
+- **Theme**: Web Development + Automation focus (NOT cybersecurity)
 
 ## Common Modifications
 

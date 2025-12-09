@@ -11,7 +11,7 @@ interface BlogPageProps {
   posts: BlogPost[]
 }
 
-const categories = ["Todos", "Automatización", "Ciberseguridad", "Tutoriales"]
+const categories = ["Todos", "Desarrollo Web", "Automatización", "Tutoriales"]
 
 export default function BlogPage({ posts }: BlogPageProps) {
   const [searchTerm, setSearchTerm] = useState("")
@@ -38,7 +38,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Blog de BethaLabs</h1>
           <p className="text-[#B3B3B3] text-lg max-w-2xl mx-auto">
-            Artículos, guías y recursos sobre automatización, ciberseguridad y transformación digital para PyMEs
+            Artículos, guías y recursos sobre desarrollo web, automatización y transformación digital para PyMEs
           </p>
         </motion.div>
 

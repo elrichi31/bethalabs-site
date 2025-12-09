@@ -12,8 +12,8 @@ export default function DynamicMetadata() {
 
     // Actualizar title
     document.title = language === 'es' 
-      ? 'BethaLabs | Automatización y Ciberseguridad Ecuador'
-      : 'BethaLabs | Automation & Cybersecurity LATAM';
+      ? 'BethaLabs | Desarrollo Web y Automatización Ecuador'
+      : 'BethaLabs | Web Development & Automation LATAM';
 
     // Actualizar o crear meta tags
     const updateOrCreateMeta = (selector: string, attribute: string, content: string) => {
@@ -35,8 +35,8 @@ export default function DynamicMetadata() {
       'meta[name="description"]',
       'name',
       language === 'es'
-        ? 'Automatización con n8n/Make y ciberseguridad para PyMEs en Ecuador y Latinoamérica. Servicios remotos y presenciales.'
-        : 'Automation with n8n/Make and cybersecurity for SMEs in Ecuador and Latin America. Remote and on-site services.'
+        ? 'Desarrollo web profesional y automatizaciones con n8n para PyMEs en Ecuador y Latinoamérica. Landing pages, e-commerce y chatbots.'
+        : 'Professional web development and n8n automations for SMEs in Ecuador and Latin America. Landing pages, e-commerce and chatbots.'
     );
 
     // OG Tags
@@ -44,16 +44,16 @@ export default function DynamicMetadata() {
       'meta[property="og:title"]',
       'property',
       language === 'es'
-        ? 'BethaLabs | Automatización y Ciberseguridad en Ecuador'
-        : 'BethaLabs | Automation & Cybersecurity in Latin America'
+        ? 'BethaLabs | Desarrollo Web y Automatización Ecuador'
+        : 'BethaLabs | Web Development & Automation LATAM'
     );
 
     updateOrCreateMeta(
       'meta[property="og:description"]',
       'property',
       language === 'es'
-        ? 'Transformamos negocios ecuatorianos con automatizaciones inteligentes y seguridad digital.'
-        : 'We transform Latin American businesses with intelligent automations and digital security.'
+        ? 'Creamos sitios web profesionales y automatizamos procesos para hacer crecer tu negocio.'
+        : 'We create professional websites and automate processes to grow your business.'
     );
 
     updateOrCreateMeta(
@@ -67,16 +67,16 @@ export default function DynamicMetadata() {
       'meta[name="twitter:title"]',
       'name',
       language === 'es'
-        ? 'BethaLabs | Automatización y Ciberseguridad en Ecuador'
-        : 'BethaLabs | Automation & Cybersecurity in Latin America'
+        ? 'BethaLabs | Desarrollo Web y Automatización Ecuador'
+        : 'BethaLabs | Web Development & Automation LATAM'
     );
 
     updateOrCreateMeta(
       'meta[name="twitter:description"]',
       'name',
       language === 'es'
-        ? 'Agencia líder en automatización y ciberseguridad para PyMEs ecuatorianas'
-        : 'Leading automation and cybersecurity agency for Latin American SMEs'
+        ? 'Agencia de desarrollo web y automatización para PyMEs ecuatorianas'
+        : 'Web development and automation agency for Latin American SMEs'
     );
 
     // Agregar/actualizar hreflang links

@@ -16,19 +16,30 @@ export const translations = {
     hero: {
       subtitle: "BethaLabs",
       title: "Transformando tu negocio con",
-      titleHighlight1: "automatizaciones inteligentes",
+      titleHighlight1: "desarrollo web y automatizaciones",
       titleAnd: "y",
-      titleHighlight2: "seguridad digital",
-      description: "Potenciamos pequeñas y medianas empresas con soluciones técnicas que optimizan procesos y protegen tus datos",
-      ctaPrimary: "Solicitar demo gratuita",
+      titleHighlight2: "soluciones digitales",
+      description: "Creamos sitios web profesionales y automatizamos procesos para hacer crecer tu negocio.",
+      ctaPrimary: "Solicitar cotización",
       ctaSecondary: "Ver nuestros servicios",
+      badge: "Simple y poderoso",
+      stats: {
+        projects: "Proyectos web",
+        support: "Soporte activo",
+        satisfaction: "Satisfacción"
+      },
+      features: {
+        websites: "Sitios web",
+        automation: "Automatización",
+        results: "Resultados"
+      }
     },
 
     // About
     about: {
       title: "¿Quiénes somos?",
-      paragraph1: "En BethaLabs somos una agencia dedicada a la innovación tecnológica. Creamos automatizaciones, optimizamos flujos internos y brindamos consultorías de ciberseguridad para que negocios sin área técnica puedan escalar con confianza.",
-      paragraph2: "Nuestra misión es democratizar el acceso a soluciones técnicas avanzadas, ayudando a pequeñas y medianas empresas a competir con herramientas de clase mundial.",
+      paragraph1: "En BethaLabs somos una agencia de desarrollo web y automatización. Creamos sitios web profesionales, landing pages de alta conversión y automatizamos flujos de trabajo para que negocios sin área técnica puedan escalar con confianza.",
+      paragraph2: "Nuestra misión es democratizar el acceso a soluciones digitales avanzadas, ayudando a pequeñas y medianas empresas a tener presencia online profesional y procesos automatizados.",
       paragraph3: "🌎 Enfocados en el mercado latinoamericano: ofrecemos servicios presenciales en Ecuador y remotos en toda Latinoamérica.",
       cta: "Hablemos de tu proyecto",
     },
@@ -36,7 +47,7 @@ export const translations = {
     // Services
     services: {
       title: "Nuestros Servicios",
-      subtitle: "Soluciones técnicas diseñadas para PyMEs que quieren crecer con tecnología confiable",
+      subtitle: "Desarrollo web y automatizaciones diseñadas para PyMEs que quieren crecer digitalmente",
       
       bethaflow: {
         name: "BethaFlow",
@@ -45,34 +56,34 @@ export const translations = {
         featuresTitle: "Qué hacemos:",
         features: [
           "Integraciones personalizadas con n8n o Python",
-          "Automatización de reportes y notificaciones",
+          "Automatización de WhatsApp, emails y notificaciones",
           "Sincronización de datos en tiempo real",
-          "Mantenimiento y escalado continuo"
+          "Chatbots y respuestas automáticas"
         ],
         benefitsTitle: "Beneficios para ti:",
         benefits: [
           "Ahorro de tiempo y reducción de errores",
           "Procesos más eficientes sin intervención manual",
-          "Mejores decisiones con datos conectados"
+          "Mejor atención al cliente 24/7"
         ]
       },
       
-      bethasecure: {
-        name: "BethaSecure",
-        title: "Consultoría de Ciberseguridad",
-        description: "Protegemos tu negocio con auditorías, configuraciones seguras y asesoramiento continuo.",
+      bethaweb: {
+        name: "BethaWeb",
+        title: "Desarrollo Web Profesional",
+        description: "Creamos sitios web modernos, rápidos y optimizados que convierten visitantes en clientes.",
         featuresTitle: "Qué hacemos:",
         features: [
-          "Auditorías de seguridad (PCs, red, contraseñas)",
-          "Detección y limpieza de malware",
-          "Configuración de copias de seguridad",
-          "Asesoramiento en buenas prácticas digitales"
+          "Landing pages de alta conversión",
+          "Sitios web corporativos y portfolios",
+          "E-commerce y tiendas online",
+          "Optimización SEO y velocidad"
         ],
         benefitsTitle: "Beneficios para ti:",
         benefits: [
-          "Tranquilidad ante amenazas digitales",
-          "Menor riesgo de pérdida de datos",
-          "Confianza para usar tecnología sin temor"
+          "Presencia online profesional 24/7",
+          "Mayor credibilidad y confianza",
+          "Más clientes desde Google y redes"
         ]
       },
 
@@ -116,12 +127,31 @@ export const translations = {
       viewMore: "Ver más",
       contentNote: "Contenido en español (enfoque en mercado latinoamericano)",
       contentBadge: "🇪🇸 Español",
+      ctaButton: "Solicitar cotización gratuita",
+      featuredBadge: "⭐ CASO DESTACADO - Cliente Real ⭐",
+      cases: [
+        {
+          title: "🚀 Landing Page de Alta Conversión para Agencia de Marketing",
+          description: "Diseñamos y desarrollamos una landing page moderna con Next.js para una agencia de marketing digital en Guayaquil. El sitio incluye animaciones fluidas, formulario de contacto integrado con WhatsApp, sección de testimonios con carrusel, y optimización SEO completa.",
+          impact: "300% más leads mensuales"
+        },
+        {
+          title: "Chatbot WhatsApp + CRM Automático",
+          description: "Implementamos un sistema de atención automatizada por WhatsApp para una clínica dental. El chatbot responde preguntas frecuentes, agenda citas automáticamente, envía recordatorios 24h antes y recopila feedback post-consulta.",
+          impact: "70% menos llamadas, 40% más citas"
+        },
+        {
+          title: "E-commerce con Pagos Integrados",
+          description: "Desarrollamos una tienda online completa para una boutique de ropa en Quito. Incluye catálogo de productos con filtros, carrito de compras, integración con PayPhone para pagos locales, sistema de inventario en tiempo real.",
+          impact: "Primeras ventas online en 2 semanas"
+        }
+      ]
     },
 
     // Blog
     blog: {
       title: "Blog",
-      subtitle: "Artículos, guías y análisis sobre automatización y ciberseguridad",
+      subtitle: "Artículos, guías y tutoriales sobre desarrollo web y automatización",
       readMore: "Leer más",
       readTime: "min de lectura",
       contentNote: "La mayoría de artículos están escritos en español para nuestra audiencia latinoamericana",
@@ -131,8 +161,8 @@ export const translations = {
     // Contact
     contact: {
       title: "Empieza tu transformación digital",
-      subtitle: "¿Listo para optimizar tu negocio con automatización o proteger tus datos? Hablemos. En BethaLabs estamos listos para acompañarte.",
-      formTitle: "Solicita tu consultoría gratuita",
+      subtitle: "¿Listo para tener un sitio web profesional o automatizar tu negocio? Hablemos. En BethaLabs estamos listos para acompañarte.",
+      formTitle: "Solicita tu cotización gratuita",
       form: {
         name: "Nombre completo",
         email: "Email",
@@ -152,11 +182,11 @@ export const translations = {
 
     // Footer
     footer: {
-      description: "Innovación, automatización y seguridad para tu negocio.",
+      description: "Desarrollo web y automatización para tu negocio.",
       quickLinks: "Enlaces rápidos",
       contactTitle: "Contacto",
-      contactDescription: "¿Listo para optimizar tu negocio?",
-      contactFooter: "BethaLabs — innovación, automatización y seguridad para tu negocio.",
+      contactDescription: "¿Listo para llevar tu negocio al siguiente nivel?",
+      contactFooter: "BethaLabs — desarrollo web y automatización para tu negocio.",
       rights: "Todos los derechos reservados.",
       developedBy: "Desarrollado por",
     }
@@ -176,19 +206,30 @@ export const translations = {
     hero: {
       subtitle: "BethaLabs",
       title: "Transforming your business with",
-      titleHighlight1: "intelligent automations",
+      titleHighlight1: "web development and automations",
       titleAnd: "and",
-      titleHighlight2: "digital security",
-      description: "We empower small and medium businesses with technical solutions that optimize processes and protect your data",
-      ctaPrimary: "Request free demo",
+      titleHighlight2: "digital solutions",
+      description: "We create professional websites and automate processes to grow your business.",
+      ctaPrimary: "Request a quote",
       ctaSecondary: "View our services",
+      badge: "Simple and powerful",
+      stats: {
+        projects: "Web projects",
+        support: "Active support",
+        satisfaction: "Satisfaction"
+      },
+      features: {
+        websites: "Websites",
+        automation: "Automation",
+        results: "Results"
+      }
     },
 
     // About
     about: {
       title: "Who we are?",
-      paragraph1: "At BethaLabs we are an agency dedicated to technological innovation. We create automations, optimize internal workflows and provide cybersecurity consulting so businesses without a technical area can scale with confidence.",
-      paragraph2: "Our mission is to democratize access to advanced technical solutions, helping small and medium businesses compete with world-class tools.",
+      paragraph1: "At BethaLabs we are a web development and automation agency. We create professional websites, high-conversion landing pages and automate workflows so businesses without a technical team can scale with confidence.",
+      paragraph2: "Our mission is to democratize access to advanced digital solutions, helping small and medium businesses have a professional online presence and automated processes.",
       paragraph3: "🌎 Focused on the Latin American market: we offer on-site services in Ecuador and remote services throughout Latin America.",
       cta: "Let's talk about your project",
     },
@@ -196,7 +237,7 @@ export const translations = {
     // Services
     services: {
       title: "Our Services",
-      subtitle: "Technical solutions designed for SMEs that want to grow with reliable technology",
+      subtitle: "Web development and automations designed for SMEs that want to grow digitally",
       
       bethaflow: {
         name: "BethaFlow",
@@ -205,34 +246,34 @@ export const translations = {
         featuresTitle: "What we do:",
         features: [
           "Custom integrations with n8n or Python",
-          "Report and notification automation",
+          "WhatsApp, email and notification automation",
           "Real-time data synchronization",
-          "Continuous maintenance and scaling"
+          "Chatbots and automatic responses"
         ],
         benefitsTitle: "Benefits for you:",
         benefits: [
           "Time savings and error reduction",
           "More efficient processes without manual intervention",
-          "Better decisions with connected data"
+          "Better 24/7 customer service"
         ]
       },
       
-      bethasecure: {
-        name: "BethaSecure",
-        title: "Cybersecurity Consulting",
-        description: "We protect your business with audits, secure configurations and ongoing advice.",
+      bethaweb: {
+        name: "BethaWeb",
+        title: "Professional Web Development",
+        description: "We create modern, fast and optimized websites that convert visitors into customers.",
         featuresTitle: "What we do:",
         features: [
-          "Security audits (PCs, network, passwords)",
-          "Malware detection and removal",
-          "Backup configuration",
-          "Best digital practices consulting"
+          "High-conversion landing pages",
+          "Corporate websites and portfolios",
+          "E-commerce and online stores",
+          "SEO and speed optimization"
         ],
         benefitsTitle: "Benefits for you:",
         benefits: [
-          "Peace of mind against digital threats",
-          "Lower risk of data loss",
-          "Confidence to use technology without fear"
+          "24/7 professional online presence",
+          "Greater credibility and trust",
+          "More customers from Google and social media"
         ]
       },
 
@@ -276,12 +317,31 @@ export const translations = {
       viewMore: "View more",
       contentNote: "Content in Spanish (Latin American market focus)",
       contentBadge: "🇪🇸 Spanish",
+      ctaButton: "Request a free quote",
+      featuredBadge: "⭐ FEATURED CASE - Real Client ⭐",
+      cases: [
+        {
+          title: "🚀 High-Conversion Landing Page for Marketing Agency",
+          description: "We designed and developed a modern landing page with Next.js for a digital marketing agency in Guayaquil. The site includes smooth animations, WhatsApp-integrated contact form, testimonials carousel, and complete SEO optimization.",
+          impact: "300% more monthly leads"
+        },
+        {
+          title: "WhatsApp Chatbot + Automatic CRM",
+          description: "We implemented an automated WhatsApp support system for a dental clinic. The chatbot answers FAQs, schedules appointments automatically, sends reminders 24h before, and collects post-consultation feedback.",
+          impact: "70% fewer calls, 40% more appointments"
+        },
+        {
+          title: "E-commerce with Integrated Payments",
+          description: "We developed a complete online store for a clothing boutique in Quito. Includes product catalog with filters, shopping cart, PayPhone integration for local payments, real-time inventory system.",
+          impact: "First online sales in 2 weeks"
+        }
+      ]
     },
 
     // Blog
     blog: {
       title: "Blog",
-      subtitle: "Articles, guides and analysis on automation and cybersecurity",
+      subtitle: "Articles, guides and tutorials on web development and automation",
       readMore: "Read more",
       readTime: "min read",
       contentNote: "Most articles are written in Spanish for our Latin American audience",
@@ -291,8 +351,8 @@ export const translations = {
     // Contact
     contact: {
       title: "Start your digital transformation",
-      subtitle: "Ready to optimize your business with automation or protect your data? Let's talk. At BethaLabs we are ready to support you.",
-      formTitle: "Request your free consultation",
+      subtitle: "Ready for a professional website or to automate your business? Let's talk. At BethaLabs we are ready to support you.",
+      formTitle: "Request your free quote",
       form: {
         name: "Full name",
         email: "Email",
@@ -312,11 +372,11 @@ export const translations = {
 
     // Footer
     footer: {
-      description: "Innovation, automation and security for your business.",
+      description: "Web development and automation for your business.",
       quickLinks: "Quick links",
       contactTitle: "Contact",
-      contactDescription: "Ready to optimize your business?",
-      contactFooter: "BethaLabs — innovation, automation and security for your business.",
+      contactDescription: "Ready to take your business to the next level?",
+      contactFooter: "BethaLabs — web development and automation for your business.",
       rights: "All rights reserved.",
       developedBy: "Developed by",
     }

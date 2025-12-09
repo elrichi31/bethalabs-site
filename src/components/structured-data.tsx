@@ -13,8 +13,8 @@ export default function StructuredData() {
     "url": "https://www.bethalabs.com",
     "logo": "https://www.bethalabs.com/logo.png",
     "description": language === 'es' 
-      ? "Agencia ecuatoriana especializada en automatización de procesos empresariales y ciberseguridad para PyMEs. Expertos en n8n, Make, y protección digital."
-      : "Ecuadorian agency specialized in business process automation and cybersecurity for SMEs. Experts in n8n, Make, and digital protection.",
+      ? "Agencia ecuatoriana de desarrollo web y automatización para PyMEs. Landing pages, e-commerce, chatbots WhatsApp y flujos automáticos con n8n."
+      : "Ecuadorian web development and automation agency for SMEs. Landing pages, e-commerce, WhatsApp chatbots and automated workflows with n8n.",
     "inLanguage": [language === 'es' ? 'es-EC' : 'en-US'],
     "address": {
       "@type": "PostalAddress",
@@ -69,7 +69,7 @@ export default function StructuredData() {
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Business Automation and Cybersecurity",
+    "serviceType": "Web Development and Business Automation",
     "provider": {
       "@type": "Organization",
       "name": "BethaLabs"
@@ -81,17 +81,17 @@ export default function StructuredData() {
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": language === 'es' 
-        ? "Servicios de Automatización y Ciberseguridad"
-        : "Automation and Cybersecurity Services",
+        ? "Servicios de Desarrollo Web y Automatización"
+        : "Web Development and Automation Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "BethaFlow - " + (language === 'es' ? "Automatización de Procesos" : "Process Automation"),
+            "name": "BethaWeb - " + (language === 'es' ? "Desarrollo Web Profesional" : "Professional Web Development"),
             "description": language === 'es'
-              ? "Automatización de procesos empresariales con n8n y Make. Facturación automática, integración de sistemas, flujos de trabajo inteligentes."
-              : "Business process automation with n8n and Make. Automatic billing, system integration, intelligent workflows.",
+              ? "Desarrollo de sitios web profesionales, landing pages de alta conversión, e-commerce y portfolios con Next.js y React."
+              : "Professional website development, high-conversion landing pages, e-commerce and portfolios with Next.js and React.",
             "provider": {
               "@type": "Organization",
               "name": "BethaLabs"
@@ -102,10 +102,10 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "BethaSecure - " + (language === 'es' ? "Ciberseguridad" : "Cybersecurity"),
+            "name": "BethaFlow - " + (language === 'es' ? "Automatización de Procesos" : "Process Automation"),
             "description": language === 'es'
-              ? "Consultoría en ciberseguridad, auditorías de seguridad, protección de datos, cumplimiento normativo para PyMEs."
-              : "Cybersecurity consulting, security audits, data protection, regulatory compliance for SMEs.",
+              ? "Automatización de procesos empresariales con n8n. Chatbots WhatsApp, integración de sistemas, flujos de trabajo inteligentes."
+              : "Business process automation with n8n. WhatsApp chatbots, system integration, intelligent workflows.",
             "provider": {
               "@type": "Organization",
               "name": "BethaLabs"
@@ -191,7 +191,7 @@ export default function StructuredData() {
         "name": "¿Qué es BethaLabs?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "BethaLabs es una agencia especializada en automatización de procesos empresariales y ciberseguridad para PyMEs en Ecuador y Latinoamérica. Ayudamos a empresas de forma remota y presencial a optimizar sus operaciones con herramientas como n8n y Make, y a proteger sus datos con soluciones de ciberseguridad profesionales."
+          "text": "BethaLabs es una agencia de desarrollo web y automatización para PyMEs en Ecuador y Latinoamérica. Creamos sitios web profesionales, landing pages de alta conversión, e-commerce y automatizamos procesos con chatbots WhatsApp y flujos inteligentes con n8n."
         }
       },
       {
@@ -199,7 +199,7 @@ export default function StructuredData() {
         "name": "¿Qué servicios ofrece BethaLabs en Ecuador?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ofrecemos dos servicios principales: BethaFlow (automatización de procesos con n8n, Make, integración de sistemas, facturación automática) y BethaSecure (consultoría en ciberseguridad, auditorías, protección de datos, cumplimiento normativo). Atendemos PyMEs en todo Ecuador."
+          "text": "Ofrecemos dos servicios principales: BethaWeb (desarrollo web profesional: landing pages, e-commerce, portfolios, sitios corporativos con Next.js) y BethaFlow (automatización de procesos: chatbots WhatsApp, integración de sistemas, n8n, reportes automáticos). Atendemos PyMEs en todo Ecuador."
         }
       },
       {
@@ -207,15 +207,15 @@ export default function StructuredData() {
         "name": "¿Cómo puede la automatización ayudar a mi PyME en Ecuador?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La automatización reduce tiempo en tareas repetitivas hasta un 80%, elimina errores humanos, mejora la productividad y permite que tu equipo se enfoque en actividades estratégicas. Automatizamos facturación, CRM, reportes, integraciones entre sistemas y más."
+          "text": "La automatización reduce tiempo en tareas repetitivas hasta un 80%, elimina errores humanos, mejora la productividad y permite que tu equipo se enfoque en actividades estratégicas. Automatizamos WhatsApp, CRM, reportes, integraciones entre sistemas y más."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Por qué es importante la ciberseguridad para PyMEs ecuatorianas?",
+        "name": "¿Por qué necesito un sitio web profesional para mi negocio?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Las PyMEs son cada vez más objetivo de ciberataques. La protección de datos de clientes, cumplimiento con regulaciones ecuatorianas, y la continuidad del negocio dependen de una buena estrategia de ciberseguridad. Ofrecemos soluciones accesibles y efectivas."
+          "text": "Un sitio web profesional te da presencia online 24/7, genera confianza en tus clientes, te posiciona en Google y convierte visitantes en clientes. Creamos landing pages optimizadas que generan leads y e-commerce que venden mientras duermes."
         }
       },
       {

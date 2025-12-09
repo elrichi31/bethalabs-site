@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Zap, Shield, TrendingUp } from "lucide-react";
+import { ArrowRight, Zap, Globe, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { translations } from "@/lib/translations";
 
@@ -9,6 +10,22 @@ export default function Hero() {
   const { language } = useLanguage();
   const t = translations[language].hero;
   const reduceMotion = useReducedMotion();
+
+  // Palabras que rotan en el título
+  const [wordIndex, setWordIndex] = useState(0);
+  const rotatingWords = useMemo(
+    () => language === 'es' 
+      ? ["landing pages", "e-commerce", "automatizaciones", "chatbots", "sitios web"]
+      : ["landing pages", "e-commerce", "automations", "chatbots", "websites"],
+    [language]
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [rotatingWords.length]);
 
   // Animación simple respetando preferencias del usuario
   const fadeUp = reduceMotion
@@ -19,15 +36,15 @@ export default function Hero() {
       };
 
   const stats = [
-    { value: "20+", label: "Automatizaciones" },
-    { value: "24/7", label: "Soporte activo" },
-    { value: "100%", label: "Satisfacción" },
+    { value: "50+", label: t.stats.projects },
+    { value: "24/7", label: t.stats.support },
+    { value: "100%", label: t.stats.satisfaction },
   ];
 
   const features = [
-    { icon: TrendingUp, label: "Tiempo real" },
-    { icon: Zap, label: "Rápido" },
-    { icon: Shield, label: "Seguro" },
+    { icon: Globe, label: t.features.websites },
+    { icon: Zap, label: t.features.automation },
+    { icon: TrendingUp, label: t.features.results },
   ];
 
   return (
@@ -82,22 +99,37 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-[#34A853]/30 bg-[#34A853]/5 text-xs text-[#B3B3B3] backdrop-blur-sm"
           >
             <Zap className="w-3 h-3 text-[#34A853]" aria-hidden />
-            <span>Simple y poderoso</span>
+            <span>{t.badge}</span>
           </motion.div>
 
-          {/* Título principal */}
+          {/* Título principal con palabras rotativas */}
           <motion.h1
             {...fadeUp}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-5"
           >
             {t.title}{" "}
-            <span className="text-[#34A853] relative inline-block">
-              {t.titleHighlight1}
-              <span
-                className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#34A853] rounded-full"
-                aria-hidden
-              />
+            <span className="relative inline-flex w-full justify-center overflow-hidden h-[1.2em] md:h-[1.15em]">
+              {rotatingWords.map((word, index) => (
+                <motion.span
+                  key={index}
+                  className="absolute text-[#34A853]"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={
+                    wordIndex === index
+                      ? { y: 0, opacity: 1 }
+                      : { y: wordIndex > index ? -50 : 50, opacity: 0 }
+                  }
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 100, 
+                    damping: 15,
+                    duration: 0.5 
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </span>
           </motion.h1>
 
@@ -107,7 +139,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="text-base md:text-lg text-[#B3B3B3] mb-8 max-w-xl mx-auto"
           >
-            Automatiza procesos y protege tu negocio con soluciones a medida.
+            {t.description}
           </motion.p>
 
           {/* CTAs */}

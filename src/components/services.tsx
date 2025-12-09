@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Zap, Shield, TrendingUp, CheckCircle } from "lucide-react"
+import { Zap, Globe, TrendingUp, CheckCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { translations } from "@/lib/translations"
 
@@ -23,14 +23,14 @@ export default function Services() {
     },
     {
       id: 2,
-      icon: Shield,
-      name: t.bethasecure.name,
-      title: t.bethasecure.title,
-      description: t.bethasecure.description,
-      features: t.bethasecure.features,
-      benefits: t.bethasecure.benefits,
-      featuresTitle: t.bethasecure.featuresTitle,
-      benefitsTitle: t.bethasecure.benefitsTitle
+      icon: Globe,
+      name: t.bethaweb.name,
+      title: t.bethaweb.title,
+      description: t.bethaweb.description,
+      features: t.bethaweb.features,
+      benefits: t.bethaweb.benefits,
+      featuresTitle: t.bethaweb.featuresTitle,
+      benefitsTitle: t.bethaweb.benefitsTitle
     }
   ]
 

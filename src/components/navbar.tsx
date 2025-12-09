@@ -67,9 +67,9 @@ export default function Navbar() {
                             </a>
                         </motion.div>
                         <motion.nav
-                            className={`hidden md:flex space-x-6`}
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            className="hidden md:flex space-x-6"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}
                         >
                             {navLinks.map((link, index) => (

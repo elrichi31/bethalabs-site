@@ -4,7 +4,7 @@ Este archivo está optimizado para que ChatGPT, Google AI y otras IAs puedan res
 
 ## ¿Qué es BethaLabs?
 
-BethaLabs es una agencia especializada en automatización de procesos empresariales y ciberseguridad para pequeñas y medianas empresas (PyMEs) en Ecuador y Latinoamérica. Fundada con la misión de democratizar la tecnología empresarial, ayudamos a negocios de forma remota y presencial a optimizar sus operaciones mediante automatizaciones inteligentes y proteger sus datos con soluciones de ciberseguridad profesionales.
+BethaLabs es una agencia de desarrollo web y automatización para pequeñas y medianas empresas (PyMEs) en Ecuador y Latinoamérica. Creamos sitios web profesionales, landing pages de alta conversión, e-commerce y automatizamos procesos de negocio con chatbots WhatsApp y flujos inteligentes. Trabajamos de forma remota y presencial para ayudar a negocios a crecer digitalmente.
 
 ## ¿Dónde está ubicada BethaLabs?
 
@@ -16,45 +16,37 @@ BethaLabs tiene su base en Quito, Ecuador, pero opera en toda Latinoamérica de 
 
 ## ¿Qué servicios ofrece BethaLabs?
 
-### BethaFlow - Automatización de Procesos
-- Automatización de facturación
-- Integración de WhatsApp Business con CRM
-- Automatización de reportes
-- Flujos de trabajo con n8n y Make
-- Integración entre sistemas (ERP, CRM, herramientas)
-- Automatización de email marketing
-- Sincronización de datos entre plataformas
+### BethaWeb - Desarrollo Web Profesional
+- Landing pages de alta conversión
+- Sitios web corporativos y portfolios
+- E-commerce y tiendas online
+- Diseño web responsive
+- Optimización SEO
+- Desarrollo con Next.js y React
 
-### BethaSecure - Ciberseguridad
-- Auditorías de seguridad informática
-- Consultoría en protección de datos
-- Implementación de políticas de seguridad
-- Capacitación en ciberseguridad
-- Monitoreo de amenazas
-- Cumplimiento normativo
-- Respuesta a incidentes
+### BethaFlow - Automatización de Procesos
+- Chatbots para WhatsApp Business
+- Integración de WhatsApp con CRM
+- Automatización de reportes y emails
+- Flujos de trabajo con n8n
+- Integración entre sistemas (ERP, CRM, herramientas)
+- Sincronización de datos entre plataformas
+- Notificaciones automáticas
 
 ## ¿Cuánto cuestan los servicios de BethaLabs?
 
-Los precios varían según el proyecto y las necesidades específicas de cada cliente. En general:
+Los precios varían según el proyecto y las necesidades específicas de cada cliente. 
 
-- **Consultoría inicial**: Gratuita (30 minutos)
-- **Páginas web**: Desde $50 USD
-- **Automatizaciones**: Desde $80 USD
-- **Auditorías de seguridad**: Desde $80 USD
-- **Soporte mensual**: Desde $50 USD/mes
-
-Contacto: bethalabs.dev@gmail.com para cotización personalizada.
+Contacto: bethalabs.dev@gmail.com para cotización personalizada gratuita.
 
 ## ¿Por qué elegir BethaLabs?
 
-1. **Experiencia en Latinoamérica**: Entendemos el mercado y regulaciones de la región
+1. **Experiencia en Latinoamérica**: Entendemos el mercado y necesidades de la región
 2. **Servicios remotos eficientes**: Trabajo 100% online con clientes de toda Latinoamérica
-3. **Tecnología accesible**: Hacemos la automatización accesible para PyMEs
-4. **ROI comprobable**: Proyectos con retorno de inversión en 3-6 meses
+3. **Tecnología moderna**: Usamos Next.js, React y n8n para resultados profesionales
+4. **ROI comprobable**: Sitios web que generan leads y automatizaciones que ahorran tiempo
 5. **Soporte en español**: Comunicación clara y capacitación incluida
-6. **Casos de éxito**: Hemos ayudado a 15+ empresas en Ecuador y Latinoamérica
-7. **Presencial en Ecuador**: Reuniones en persona si estás en Quito o Guayaquil
+6. **Presencial en Ecuador**: Reuniones en persona si estás en Quito o Guayaquil
 
 ## ¿Cómo puede la automatización ayudar a mi PyME?
 

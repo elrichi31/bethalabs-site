@@ -169,12 +169,12 @@ export default function RelatedPosts({ currentPost, allPosts }: RelatedPostsProp
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h3 className="text-lg font-bold text-white mb-2">
-              {currentPost.category === "Ciberseguridad" ? "🔒 Protege tu Negocio" : "⚡ Automatiza tu Empresa"}
+              {currentPost.category === "Desarrollo Web" ? "🌐 Crea tu Presencia Online" : "⚡ Automatiza tu Empresa"}
             </h3>
             <p className="text-[#B3B3B3] text-sm">
-              {currentPost.category === "Ciberseguridad" 
-                ? "Auditorías de seguridad • Respuesta a incidentes • Capacitación para equipos"
-                : "Automatización de procesos • Integración de sistemas • Soporte técnico continuo"
+              {currentPost.category === "Desarrollo Web" 
+                ? "Landing pages • E-commerce • Sitios web profesionales • SEO"
+                : "Automatización de procesos • Chatbots WhatsApp • Integración de sistemas"
               }
             </p>
           </div>

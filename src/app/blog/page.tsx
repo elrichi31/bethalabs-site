@@ -5,26 +5,26 @@ import { getAllPosts } from "@/lib/blog"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Blog de Automatización y Ciberseguridad en Ecuador | BethaLabs",
+  title: "Blog de Desarrollo Web y Automatización en Ecuador | BethaLabs",
   description:
-    "Guías prácticas sobre automatización con n8n, Make, ciberseguridad para PyMEs ecuatorianas, integración de sistemas y transformación digital. Aprende a optimizar tu negocio.",
+    "Guías prácticas sobre desarrollo web con Next.js, automatización con n8n, chatbots WhatsApp y transformación digital para PyMEs. Aprende a hacer crecer tu negocio online.",
   keywords: [
-    "blog automatización Ecuador",
-    "ciberseguridad PyMEs",
+    "blog desarrollo web Ecuador",
+    "tutoriales Next.js español",
+    "automatización PyMEs",
     "tutoriales n8n español",
-    "guías Make automatización",
-    "seguridad digital Ecuador",
+    "chatbots WhatsApp",
+    "landing pages Ecuador",
     "integración WhatsApp CRM",
-    "facturación automática",
-    "transformación digital Ecuador",
-    "buenas prácticas IT"
+    "e-commerce Ecuador",
+    "transformación digital Ecuador"
   ],
   alternates: {
     canonical: 'https://www.bethalabs.com/blog',
   },
   openGraph: {
-    title: 'Blog de Automatización y Ciberseguridad | BethaLabs Ecuador',
-    description: 'Guías prácticas, casos de éxito y recursos sobre automatización y ciberseguridad para PyMEs ecuatorianas',
+    title: 'Blog de Desarrollo Web y Automatización | BethaLabs Ecuador',
+    description: 'Guías prácticas, tutoriales y recursos sobre desarrollo web y automatización para PyMEs ecuatorianas',
     url: 'https://www.bethalabs.com/blog',
     type: 'website',
     locale: 'es_EC',
