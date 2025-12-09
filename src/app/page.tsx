@@ -1,14 +1,27 @@
+import dynamic from "next/dynamic"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import About from "@/components/about"
-import Services from "@/components/services"
-import Projects from "@/components/projects"
-import Blog from "@/components/blog"
-import Contact from "@/components/contact"
-import Footer from "@/components/footer"
 import StructuredData from "@/components/structured-data"
 import { getFeaturedPosts } from "@/lib/blog"
 import type { Metadata } from "next"
+
+// Dynamic imports para componentes below-fold (code splitting)
+const Services = dynamic(() => import("@/components/services"), {
+  loading: () => <div className="min-h-screen bg-[#121212]" />,
+})
+const Projects = dynamic(() => import("@/components/projects"), {
+  loading: () => <div className="min-h-screen bg-[#1A1A1A]" />,
+})
+const Blog = dynamic(() => import("@/components/blog"), {
+  loading: () => <div className="min-h-[60vh] bg-[#121212]" />,
+})
+const Contact = dynamic(() => import("@/components/contact"), {
+  loading: () => <div className="min-h-screen bg-[#1A1A1A]" />,
+})
+const Footer = dynamic(() => import("@/components/footer"), {
+  loading: () => <div className="h-32 bg-[#121212]" />,
+})
 
 export const metadata: Metadata = {
   title: "BethaLabs | Desarrollo Web y Automatización Ecuador",

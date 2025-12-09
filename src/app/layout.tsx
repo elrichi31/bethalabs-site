@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import 'highlight.js/styles/atom-one-dark.css';
+// highlight.js CSS movido a blog-post.tsx para lazy loading
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { LanguageProvider } from "@/contexts/language-context"
@@ -102,12 +102,13 @@ export default function RootLayout({
   return (
     <html lang="es-EC" suppressHydrationWarning>
       <head>
-        {/* Preload critical resources */}
+        {/* Preload critical fonts to eliminate render-blocking chain */}
         <link rel="preload" href="/fonts/gt.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/acorn.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         {/* Critical CSS inline - texto visible inmediatamente */}
         <style dangerouslySetInnerHTML={{__html: `
           @font-face{font-family:"GT Walsheim";src:url("/fonts/gt.woff") format("woff");font-display:swap}
-          @font-face{font-family:"Acorn";src:url("/fonts/acorn.woff") format("woff");font-display:optional}
+          @font-face{font-family:"Acorn";src:url("/fonts/acorn.woff") format("woff");font-display:swap}
           :root{--titleFont:"Acorn",system-ui,sans-serif;--bodyFont:"GT Walsheim",system-ui,sans-serif}
           html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:"GT Walsheim",system-ui,sans-serif}
           .hero-text{opacity:1!important;transform:none!important}

@@ -10,6 +10,9 @@ import type { BlogPost as BlogPostType } from "@/lib/blog"
 import { BlogPostStyles } from "./blog-post-styles"
 import { useReducedMotion } from "@/lib/motion-utils"
 
+// Highlight.js CSS solo se carga cuando se visita un post del blog
+import 'highlight.js/styles/atom-one-dark.css'
+
 // Lazy load de componentes pesados
 const RelatedPosts = dynamic(() => import("./related-posts"), {
   loading: () => (
