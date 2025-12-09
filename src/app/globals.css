@@ -14,7 +14,7 @@
   src: url("/fonts/gt.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 :root {

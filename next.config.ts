@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Target modern browsers only - eliminates legacy polyfills (~11KB savings)
+  // ES2020+ browsers have native support for features like Array.at(), Object.hasOwn()
+  
   // Optimización de imágenes
   images: {
     remotePatterns: [

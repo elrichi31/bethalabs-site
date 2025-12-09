@@ -102,12 +102,15 @@ export default function RootLayout({
   return (
     <html lang="es-EC" suppressHydrationWarning>
       <head>
-        {/* Critical CSS inline - texto visible inmediatamente con fuente sistema */}
+        {/* Preload critical resources */}
+        <link rel="preload" href="/fonts/gt.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        {/* Critical CSS inline - texto visible inmediatamente */}
         <style dangerouslySetInnerHTML={{__html: `
+          @font-face{font-family:"GT Walsheim";src:url("/fonts/gt.woff") format("woff");font-display:swap}
           @font-face{font-family:"Acorn";src:url("/fonts/acorn.woff") format("woff");font-display:optional}
-          @font-face{font-family:"GT Walsheim";src:url("/fonts/gt.woff") format("woff");font-display:optional}
-          :root{--titleFont:"Acorn",system-ui,-apple-system,sans-serif;--bodyFont:"GT Walsheim",system-ui,-apple-system,sans-serif}
-          html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:system-ui,-apple-system,sans-serif}
+          :root{--titleFont:"Acorn",system-ui,sans-serif;--bodyFont:"GT Walsheim",system-ui,sans-serif}
+          html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:"GT Walsheim",system-ui,sans-serif}
+          .hero-text{opacity:1!important;transform:none!important}
         `}} />
       </head>
       <body
