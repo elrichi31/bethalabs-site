@@ -14,13 +14,30 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t.title}</h2>
-            <p className="text-[#B3B3B3] text-lg mb-6">{t.paragraph1}</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <span className="text-white">Sobre </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">BethaLabs</span>
+            </h2>
+            <p className="text-[#B3B3B3] text-lg mb-6">
+              {language === 'es' ? (
+                <>
+                  {t.paragraph1.split('desarrollo web y automatización')[0]}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 font-semibold">desarrollo web y automatización</span>
+                  {t.paragraph1.split('desarrollo web y automatización')[1]}
+                </>
+              ) : (
+                <>
+                  {t.paragraph1.split('web development and automation')[0]}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 font-semibold">web development and automation</span>
+                  {t.paragraph1.split('web development and automation')[1]}
+                </>
+              )}
+            </p>
             <p className="text-[#B3B3B3] text-lg mb-6">{t.paragraph2}</p>
             <div className="bg-[#34A853]/10 border border-[#34A853]/30 text-[#34A853] px-4 py-3 rounded-lg mb-6">
               <p className="text-sm font-medium">{t.paragraph3}</p>
@@ -34,10 +51,10 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 50, rotateY: -10 }}
+            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             className="relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-[500px] mx-auto">

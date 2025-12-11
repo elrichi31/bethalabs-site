@@ -42,12 +42,15 @@ export default function Services() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-white">Nuestros </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Servicios</span>
+            </h2>
             <p className="text-[#B3B3B3] max-w-2xl mx-auto">
               {t.subtitle}
             </p>
@@ -57,18 +60,18 @@ export default function Services() {
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                className="bg-[#1E1E1E] rounded-lg p-8 shadow-xl"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-[#1E1E1E] rounded-lg p-8 shadow-xl hover:shadow-2xl hover:shadow-[#34A853]/5 transition-shadow duration-300"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
               >
                 <div className="flex items-start mb-6">
                   <div className="bg-[#34A853]/20 p-3 rounded-lg mr-4">
                     <service.icon className="text-[#34A853] h-8 w-8" />
                   </div>
                   <div>
-                    <span className="text-[#34A853] text-sm font-semibold">{service.name}</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 text-sm font-bold">{service.name}</span>
                     <h3 className="text-2xl font-bold text-white mt-1">{service.title}</h3>
                   </div>
                 </div>
@@ -114,7 +117,10 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.methodology.title}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-white">Nuestra </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Metodología</span>
+            </h2>
             <p className="text-[#B3B3B3] max-w-2xl mx-auto">
               {t.methodology.subtitle}
             </p>

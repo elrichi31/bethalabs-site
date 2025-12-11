@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, TrendingUp, Zap, ShoppingBag, Sparkles } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
 import { translations } from "@/lib/translations"
@@ -10,125 +10,151 @@ const projectsData = [
     {
       id: 1,
       image: "/projects/product-catalog.avif",
-      tags: ["Next.js", "Landing Page", "Web Design", "SEO"]
+      tags: ["Next.js", "Tailwind", "SEO"],
+      category: "Web App",
+      size: "large", // Proyecto destacado grande
+      icon: TrendingUp
     },
     {
       id: 2,
       image: "/projects/hotelapp.avif",
-      tags: ["WhatsApp", "Chatbot", "n8n", "Automation"]
+      tags: ["WhatsApp", "n8n", "Automation"],
+      category: "Automation",
+      size: "normal",
+      icon: Zap
     },
     {
       id: 3,
       image: "/projects/auction.avif",
-      tags: ["E-commerce", "Next.js", "Payments", "React"]
+      tags: ["E-commerce", "React", "Payments"],
+      category: "E-commerce",
+      size: "tall",
+      icon: ShoppingBag
     },
+    {
+      id: 4,
+      image: "/projects/product-catalog.avif", // Reutilizamos para el 4to
+      tags: ["Analytics", "Dashboard", "React"],
+      category: "SaaS",
+      size: "normal",
+      icon: Sparkles,
+      isPlaceholder: true // Proyecto en desarrollo
+    }
   ];
 
 export default function Projects() {
   const { language } = useLanguage()
   const t = translations[language].projects
   
-  // Combinar datos estáticos con traducciones
-  const projects = projectsData.map((project, index) => ({
-    ...project,
-    title: t.cases[index].title,
-    description: t.cases[index].description,
-    impact: t.cases[index].impact
-  }));
+  // Combinar datos estáticos con traducciones (extendemos para el 4to proyecto)
+  const projects = projectsData.map((project, index) => {
+    const caseData = t.cases[index] || t.cases[0]; // Fallback al primero si no existe
+    return {
+      ...project,
+      title: project.isPlaceholder ? "SaaS Analytics Dashboard" : caseData.title,
+      description: project.isPlaceholder 
+        ? "Dashboard corporativo para visualización de big data en tiempo real." 
+        : caseData.description,
+      impact: project.isPlaceholder ? "En desarrollo" : caseData.impact
+    };
+  });
 
   return (
-    <section id="proyectos" className="py-20 bg-[#121212]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section id="proyectos" className="py-32 bg-[#121212] relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#34A853]/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#34A853]/5 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header mejorado */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          className="mb-12 pb-8 border-b border-white/10"
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">{t.title}</h2>
-          <p className="text-[#B3B3B3] text-lg max-w-2xl mx-auto">
-            {t.subtitle}
+          <div className="inline-flex items-center space-x-2 text-[#34A853] text-xs font-bold tracking-widest uppercase mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#34A853] animate-pulse"></span>
+            <span>Resultados 2024</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+            <span className="text-white">Historias de </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Éxito</span>
+          </h2>
+          <p className="text-base md:text-lg text-[#B3B3B3] max-w-3xl">
+            Innovación estratégica y diseño de alto impacto. Una selección curada de nuestros <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 font-semibold">proyectos más recientes</span> que transformaron negocios en Ecuador y Latinoamérica.
           </p>
         </motion.div>
 
-        {/* Projects Grid - 3 columnas iguales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Masonry Grid */}
+        <div className="flex flex-col gap-6 md:grid md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[280px]">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+              className={`
+                group relative overflow-hidden rounded-xl bg-[#1E1E1E] border border-white/5 shadow-lg
+                h-[280px] md:h-auto
+                ${project.size === 'large' ? 'lg:col-span-2 lg:row-span-2' : ''}
+                ${project.size === 'tall' ? 'lg:row-span-2' : ''}
+                ${project.size === 'wide' ? 'lg:col-span-2' : ''}
+                ${project.isPlaceholder ? 'bg-gradient-to-br from-[#1E1E1E] to-gray-900' : ''}
+              `}
             >
-              <div className="bg-[#1A1A1A] rounded-2xl overflow-hidden border border-[#2A2A2A] hover:border-[#34A853]/50 transition-all duration-300 group h-full flex flex-col">
-                {/* Imagen del proyecto */}
-                <div className="relative h-48 overflow-hidden">
+              {!project.isPlaceholder ? (
+                <>
+                  {/* Imagen de fondo */}
                   <Image
                     src={project.image}
                     alt={project.title}
-                    width={400}
-                    height={200}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
-                </div>
-                
-                {/* Contenido */}
-                <div className="p-6 flex flex-col flex-grow">
-                  {/* Título del proyecto */}
-                  <h3 className="text-lg font-bold text-white mb-3 leading-tight">
-                    {project.title.replace('🚀 ', '')}
-                  </h3>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                   
-                  {/* Descripción */}
-                  <p className="text-[#B3B3B3] text-sm leading-relaxed mb-4 flex-grow">
-                    {project.description}
-                  </p>
-                  
-                  {/* Tags en verde */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-medium bg-[#34A853]/20 text-[#34A853] px-3 py-1 rounded-full"
-                      >
-                        {tag}
+                  {/* Contenido superpuesto */}
+                  <div className="absolute bottom-0 left-0 p-5 w-full">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="inline-block px-2 py-0.5 rounded bg-[#34A853] text-black text-[10px] font-bold uppercase tracking-wider">
+                        {project.category}
                       </span>
-                    ))}
-                  </div>
-                  
-                  {/* Impacto/Resultado */}
-                  {project.impact && (
-                    <div className="pt-4 border-t border-[#2A2A2A]">
-                      <p className="text-[#34A853] text-sm font-semibold">
-                        ✨ {project.impact}
-                      </p>
+                      <ArrowRight className="text-[#34A853] w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                  )}
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-[#34A853] transition-colors">
+                      {project.title.replace('🚀 ', '')}
+                    </h3>
+                    <p className="text-sm text-gray-300 line-clamp-2 mb-3">
+                      {project.description}
+                    </p>
+                    <div className="flex gap-2 flex-wrap">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="text-[10px] text-gray-400 border border-white/10 px-2 py-0.5 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                // Proyecto placeholder (en desarrollo)
+                <div className="p-5 flex flex-col justify-between h-full">
+                  <div>
+                    <project.icon className="text-[#34A853] w-8 h-8 mb-3" />
+                    <h3 className="text-lg font-bold text-white">{project.title}</h3>
+                    <p className="text-sm text-[#B3B3B3] mt-2">{project.description}</p>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
+                    <span className="text-xs text-gray-500">{project.impact}</span>
+                    <ArrowRight className="text-gray-500 hover:text-white cursor-pointer transition-colors w-5 h-5" />
+                  </div>
                 </div>
-              </div>
+              )}
             </motion.div>
           ))}
-        </div>
-        
-        {/* CTA Button */}
-        <div className="flex justify-center mt-12">
-          <motion.a
-            href="#contacto"
-            className="flex items-center px-8 py-4 bg-[#34A853] text-white font-semibold rounded-full shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t.ctaButton}
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </motion.a>
         </div>
       </div>
     </section>

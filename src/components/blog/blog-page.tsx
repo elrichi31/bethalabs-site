@@ -36,7 +36,10 @@ export default function BlogPage({ posts }: BlogPageProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Blog de BethaLabs</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-white">Blog de </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">BethaLabs</span>
+          </h1>
           <p className="text-[#B3B3B3] text-lg max-w-2xl mx-auto">
             Artículos, guías y recursos sobre desarrollo web, automatización y transformación digital para PyMEs
           </p>

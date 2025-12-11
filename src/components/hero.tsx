@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Zap, Globe, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { translations } from "@/lib/translations";
@@ -10,6 +10,12 @@ export default function Hero() {
   const { language } = useLanguage();
   const t = translations[language].hero;
   const [mounted, setMounted] = useState(false);
+  
+  // Scroll animations
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const y = useTransform(scrollY, [0, 400], [0, 100]);
+  const scale = useTransform(scrollY, [0, 400], [1, 0.9]);
 
   // Palabras que rotan en el título
   const [wordIndex, setWordIndex] = useState(0);
@@ -41,7 +47,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+    <section className="relative min-h-[100vh] md:min-h-[110vh] flex items-center justify-center overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
       {/* Fondo con gradiente radial - simplificado */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div
@@ -62,7 +68,10 @@ export default function Hero() {
       />
 
       {/* Contenido principal */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div 
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        style={{ opacity, y, scale }}
+      >
         <div className="max-w-3xl mx-auto text-center">
           {/* Badge superior - sin animación para renderizado inmediato */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-[#34A853]/30 bg-[#34A853]/5 text-xs text-[#B3B3B3] backdrop-blur-sm">
@@ -71,32 +80,32 @@ export default function Hero() {
           </div>
 
           {/* Título principal - visible inmediatamente sin animación para mejor FCP */}
-          <h1 className="hero-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-5">
+          <h1 className="hero-text text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
             {t.title}{" "}
             <span className="relative inline-flex w-full justify-center overflow-hidden h-[1.2em] md:h-[1.15em]">
               {mounted ? (
                 rotatingWords.map((word, index) => (
                   <span
                     key={index}
-                    className={`absolute text-[#34A853] transition-all duration-500 ease-in-out ${
+                    className={`absolute text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 transition-all duration-500 ease-in-out ${
                       wordIndex === index 
-                        ? 'opacity-100 translate-y-0' 
+                        ? 'opacity-100 translate-y-0 scale-100' 
                         : wordIndex > index 
-                          ? 'opacity-0 -translate-y-12' 
-                          : 'opacity-0 translate-y-12'
+                          ? 'opacity-0 -translate-y-12 scale-95' 
+                          : 'opacity-0 translate-y-12 scale-95'
                     }`}
                   >
                     {word}
                   </span>
                 ))
               ) : (
-                <span className="text-[#34A853]">{rotatingWords[0]}</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">{rotatingWords[0]}</span>
               )}
             </span>
           </h1>
 
           {/* Descripción - Sin animación para LCP instantáneo */}
-          <p className="hero-text text-base md:text-lg text-[#B3B3B3] mb-8 max-w-xl mx-auto">
+          <p className="hero-text text-xl md:text-xl text-[#B3B3B3] mb-10 max-w-2xl mx-auto">
             {t.description}
           </p>
 
@@ -118,31 +127,31 @@ export default function Hero() {
           </div>
 
           {/* Feature pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-full text-xs backdrop-blur-sm hover:border-[#34A853] transition-colors duration-300"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-full text-sm md:text-base backdrop-blur-sm hover:border-[#34A853] transition-colors duration-300"
               >
-                <feature.icon className="w-3 h-3 text-[#34A853]" aria-hidden />
+                <feature.icon className="w-4 h-4 text-[#34A853]" aria-hidden />
                 <span className="text-[#B3B3B3]">{feature.label}</span>
               </div>
             ))}
           </div>
 
           {/* Stats row */}
-          <div className="flex items-center justify-center gap-8 md:gap-12">
+          <div className="flex items-center justify-center gap-10 md:gap-16">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-xl md:text-2xl font-bold text-white mb-0.5">
+                <div className="text-2xl md:text-2xl lg:text-2xl font-bold text-white mb-1">
                   {stat.value}
                 </div>
-                <div className="text-xs text-[#666]">{stat.label}</div>
+                <div className="text-base md:text-base text-[#666]">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

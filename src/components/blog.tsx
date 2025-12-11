@@ -23,12 +23,15 @@ export default function Blog({ posts }: BlogSectionProps) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 30, rotateX: -10 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-white">Nuestro </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Blog</span>
+          </h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
             {t.subtitle}
           </p>
@@ -49,12 +52,12 @@ export default function Blog({ posts }: BlogSectionProps) {
           {featuredPosts.map((post, index) => (
             <motion.div
               key={post.slug}
-              className="bg-[#1E1E1E] rounded-lg overflow-hidden shadow-xl h-full flex flex-col"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              className="bg-[#1E1E1E] rounded-lg overflow-hidden shadow-xl h-full flex flex-col hover:shadow-2xl hover:shadow-[#34A853]/5 transition-shadow duration-300"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
