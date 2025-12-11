@@ -32,25 +32,36 @@ export const metadata: Metadata = {
   keywords: [
     'desarrollo web Ecuador',
     'diseño web Quito',
+    'diseño web Guayaquil',
     'landing pages Ecuador',
     'automatización Latinoamérica',
     'e-commerce Ecuador',
     'n8n español',
-    'chatbots WhatsApp',
+    'chatbots WhatsApp Ecuador',
     'automatización empresarial',
-    'transformación digital',
+    'transformación digital PyMEs',
     'BethaLabs',
     'BethaFlow',
     'BethaWeb',
     'integración WhatsApp CRM',
-    'sitios web profesionales',
+    'sitios web profesionales Ecuador',
     'páginas web Ecuador',
-    'servicios IT Ecuador',
-    'automatización remota'
+    'agencia digital Ecuador',
+    'automatización remota',
+    'desarrollo web LATAM'
   ],
-  authors: [{ name: 'BethaLabs Team' }],
+  authors: [{ name: 'BethaLabs Team', url: 'https://www.bethalabs.com' }],
   creator: 'BethaLabs',
   publisher: 'BethaLabs',
+  category: 'technology',
+  classification: 'Web Development Agency',
+  alternates: {
+    canonical: 'https://www.bethalabs.com',
+    languages: {
+      'es-EC': 'https://www.bethalabs.com',
+      'en': 'https://www.bethalabs.com',
+    },
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -65,9 +76,9 @@ export const metadata: Metadata = {
     description: 'Creamos sitios web profesionales y automatizamos procesos para PyMEs ecuatorianas. Landing pages, e-commerce y chatbots WhatsApp.',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
+        url: '/logo.avif',
+        width: 512,
+        height: 512,
         alt: 'BethaLabs - Desarrollo Web y Automatización Ecuador',
       },
     ],
@@ -76,7 +87,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BethaLabs | Desarrollo Web y Automatización Ecuador',
     description: 'Agencia de desarrollo web y automatización para PyMEs ecuatorianas',
-    images: ['/og-image.jpg'],
+    images: ['/logo.avif'],
   },
   robots: {
     index: true,
@@ -89,9 +100,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'tu-codigo-de-verificacion-google',
-  },
+  // verification: {
+  //   google: 'AÑADIR_CODIGO_GOOGLE_SEARCH_CONSOLE',
+  // },
 };
 
 export default function RootLayout({
