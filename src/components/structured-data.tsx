@@ -1,9 +1,4 @@
-"use client"
-
-import { useLanguage } from "@/contexts/language-context"
-
-export default function StructuredData() {
-  const { language } = useLanguage()
+export default function StructuredData({ language = 'es' }: { language?: 'es' | 'en' }) {
   
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -11,7 +6,7 @@ export default function StructuredData() {
     "name": "BethaLabs",
     "alternateName": "BethaLabs Ecuador",
     "url": "https://www.bethalabs.com",
-    "logo": "https://www.bethalabs.com/logo.png",
+    "logo": "https://www.bethalabs.com/logo.avif",
     "description": language === 'es' 
       ? "Agencia ecuatoriana de desarrollo web y automatización para PyMEs. Landing pages, e-commerce, chatbots WhatsApp y flujos automáticos con n8n."
       : "Ecuadorian web development and automation agency for SMEs. Landing pages, e-commerce, WhatsApp chatbots and automated workflows with n8n.",

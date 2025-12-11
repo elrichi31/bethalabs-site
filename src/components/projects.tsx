@@ -9,17 +9,17 @@ import { translations } from "@/lib/translations"
 const projectsData = [
     {
       id: 1,
-      image: "/projects/product-catalog.png",
+      image: "/projects/product-catalog.avif",
       tags: ["Next.js", "Landing Page", "Web Design", "SEO"]
     },
     {
       id: 2,
-      image: "/projects/hotelapp.png",
+      image: "/projects/hotelapp.avif",
       tags: ["WhatsApp", "Chatbot", "n8n", "Automation"]
     },
     {
       id: 3,
-      image: "/projects/auction.png",
+      image: "/projects/auction.avif",
       tags: ["E-commerce", "Next.js", "Payments", "React"]
     },
   ];

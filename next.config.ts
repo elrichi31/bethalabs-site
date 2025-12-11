@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 días
     dangerouslyAllowSVG: false,
     contentDispositionType: 'inline',
+    qualities: [75, 90], // Calidades permitidas para optimización
   },
 
   compress: true,

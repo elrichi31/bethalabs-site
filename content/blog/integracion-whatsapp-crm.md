@@ -5,7 +5,7 @@ date: "2025-06-15"
 author: "BethaLabs Team"
 category: "Automatización"
 tags: ["WhatsApp", "CRM", "integración", "API"]
-image: "/blog/whatsapp-crm.webp"
+image: "/blog/whatsapp-crm.avif"
 readTime: "12 min"
 ---
 

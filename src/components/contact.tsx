@@ -5,7 +5,6 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Github, Linkedin, Twitter } from "lucide-react"
-import emailjs from '@emailjs/browser'
 import { useLanguage } from "@/contexts/language-context"
 import { translations } from "@/lib/translations"
 
@@ -32,6 +31,9 @@ export default function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(false)
+
+    // Lazy load emailjs solo cuando se envía el formulario
+    const { default: emailjs } = await import('@emailjs/browser')
 
     // EmailJS configuration
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID

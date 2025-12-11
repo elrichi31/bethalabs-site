@@ -70,30 +70,24 @@ export default function Hero() {
             <span>{t.badge}</span>
           </div>
 
-          {/* Título principal - visible inmediatamente */}
+          {/* Título principal - visible inmediatamente sin animación para mejor FCP */}
           <h1 className="hero-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-5">
             {t.title}{" "}
             <span className="relative inline-flex w-full justify-center overflow-hidden h-[1.2em] md:h-[1.15em]">
               {mounted ? (
                 rotatingWords.map((word, index) => (
-                  <motion.span
+                  <span
                     key={index}
-                    className="absolute text-[#34A853]"
-                    initial={{ opacity: index === 0 ? 1 : 0, y: index === 0 ? 0 : 50 }}
-                    animate={
-                      wordIndex === index
-                        ? { y: 0, opacity: 1 }
-                        : { y: wordIndex > index ? -50 : 50, opacity: 0 }
-                    }
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 100, 
-                      damping: 15,
-                      duration: 0.5 
-                    }}
+                    className={`absolute text-[#34A853] transition-all duration-500 ease-in-out ${
+                      wordIndex === index 
+                        ? 'opacity-100 translate-y-0' 
+                        : wordIndex > index 
+                          ? 'opacity-0 -translate-y-12' 
+                          : 'opacity-0 translate-y-12'
+                    }`}
                   >
                     {word}
-                  </motion.span>
+                  </span>
                 ))
               ) : (
                 <span className="text-[#34A853]">{rotatingWords[0]}</span>

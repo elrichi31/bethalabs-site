@@ -55,7 +55,7 @@ export default function Navbar() {
                         >
                             <a href="/" className="flex items-center space-x-2">
                                 <Image 
-                                    src="/logo.png" 
+                                    src="/logo.avif" 
                                     alt="BethaLabs Logo" 
                                     width={30} 
                                     height={30}

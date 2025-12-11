@@ -12,29 +12,25 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Función para detectar idioma inicial (antes del render)
-function getInitialLanguage(): Language {
-  // Solo en el cliente
-  if (typeof window === 'undefined') return 'es';
+// Función para leer idioma de la cookie
+function getCookieLanguage(): Language {
+  if (typeof document === 'undefined') return 'es';
   
-  // 1. Verificar localStorage primero
-  const savedLanguage = localStorage.getItem("language");
-  if (savedLanguage === 'es' || savedLanguage === 'en') {
-    return savedLanguage;
-  }
+  const cookies = document.cookie.split('; ');
+  const languageCookie = cookies.find(row => row.startsWith('language='));
+  const cookieValue = languageCookie?.split('=')[1];
   
-  // 2. Detectar del navegador
-  const browserLanguage = navigator.language.toLowerCase();
-  if (browserLanguage.startsWith("es")) {
-    return "es";
-  }
-  
-  // 3. Default a español (mercado principal)
-  return "es";
+  return (cookieValue === 'es' || cookieValue === 'en') ? cookieValue : 'es';
+}
+
+// Función para establecer cookie
+function setCookieLanguage(lang: Language) {
+  const maxAge = 60 * 60 * 24 * 365; // 1 año
+  document.cookie = `language=${lang}; path=/; max-age=${maxAge}; SameSite=Lax`;
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+  const [language, setLanguageState] = useState<Language>(getCookieLanguage);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -45,7 +41,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("language", lang);
+    setCookieLanguage(lang);
     document.documentElement.lang = lang === 'es' ? 'es-EC' : 'en-US';
   };
 

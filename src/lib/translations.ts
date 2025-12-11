@@ -1,6 +1,3 @@
-// Cache para las traducciones
-let translationsCache: typeof translations | null = null;
-
 export const translations = {
   es: {
     // Navbar
@@ -386,10 +383,7 @@ export const translations = {
 export type Language = keyof typeof translations;
 export type TranslationKeys = typeof translations.es;
 
-// Helper para obtener traducciones con caché
+// Helper para obtener traducciones
 export function getTranslations(lang: Language) {
-  if (!translationsCache) {
-    translationsCache = translations;
-  }
-  return translationsCache[lang];
+  return translations[lang];
 }

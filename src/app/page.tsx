@@ -2,7 +2,7 @@ import dynamic from "next/dynamic"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import About from "@/components/about"
-import StructuredData from "@/components/structured-data"
+import StructuredDataClient from "@/components/structured-data-client"
 import { getFeaturedPosts } from "@/lib/blog"
 import type { Metadata } from "next"
 
@@ -54,7 +54,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#121212] text-white">
-      <StructuredData />
+      <StructuredDataClient />
       <Navbar />
       <Hero />
       <About />
