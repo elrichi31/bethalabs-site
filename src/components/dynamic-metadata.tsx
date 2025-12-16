@@ -79,24 +79,6 @@ export default function DynamicMetadata() {
         : 'Web development and automation agency for Latin American SMEs'
     );
 
-    // Agregar/actualizar hreflang links
-    const addHreflangLink = (lang: string, href: string) => {
-      const existingLink = document.querySelector(`link[hreflang="${lang}"]`);
-      if (existingLink) {
-        existingLink.setAttribute('href', href);
-      } else {
-        const link = document.createElement('link');
-        link.rel = 'alternate';
-        link.setAttribute('hreflang', lang);
-        link.href = href;
-        document.head.appendChild(link);
-      }
-    };
-
-    addHreflangLink('es-EC', 'https://www.bethalabs.com?lang=es');
-    addHreflangLink('en-US', 'https://www.bethalabs.com?lang=en');
-    addHreflangLink('x-default', 'https://www.bethalabs.com');
-
   }, [language]);
 
   // Este componente solo actualiza el DOM, no renderiza nada visible

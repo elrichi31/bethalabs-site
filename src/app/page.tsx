@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     "desarrollo web PyMEs"
   ],
   alternates: {
-    canonical: 'https://www.bethalabs.com/',
+    canonical: 'https://www.bethalabs.com',
   },
 }
 
