@@ -121,7 +121,7 @@ export default function RootLayout({
           @font-face{font-family:"GT Walsheim";src:url("/fonts/gt.woff") format("woff");font-display:swap}
           @font-face{font-family:"Acorn";src:url("/fonts/acorn.woff") format("woff");font-display:swap}
           :root{--titleFont:"Acorn",system-ui,sans-serif;--bodyFont:"GT Walsheim",system-ui,sans-serif}
-          html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:"GT Walsheim",system-ui,sans-serif}
+          html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:"GT Walsheim",system-ui,sans-serif;overflow-x:hidden;max-width:100vw}
           .hero-text{opacity:1!important;transform:none!important}
         `}} />
       </head>

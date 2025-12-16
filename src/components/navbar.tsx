@@ -34,8 +34,8 @@ export default function Navbar() {
     }, [])
 
     return (
-        <header className={`fixed z-50 w-full`}>
-            <div className="container mx-auto px-4 my-4">
+        <header className={`fixed z-50 w-full overflow-hidden`}>
+            <div className="container mx-auto px-3 sm:px-4 my-4">
                 <motion.div
                     className={`flex justify-between items-center md:justify-center  md:items-center `}
                     initial={{ y: -5, opacity: 0 }}

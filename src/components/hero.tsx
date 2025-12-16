@@ -48,31 +48,117 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[100vh] md:min-h-[110vh] flex items-center justify-center overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
-      {/* Fondo con gradiente radial - simplificado */}
+      {/* Fondo con gradiente radial mejorado */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
+        {/* Gradiente principal superior */}
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(52, 168, 83, 0.15), transparent 70%)",
+            background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(52, 168, 83, 0.2), transparent 60%)",
+          }}
+        />
+        {/* Gradiente secundario inferior */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(52, 168, 83, 0.08), transparent 50%)",
           }}
         />
       </div>
 
-      {/* Glow orbs - solo visible en desktop para mejor performance móvil */}
-      <div
-        className="hidden md:block absolute top-20 left-1/4 w-80 h-80 rounded-full pointer-events-none"
+      {/* Grid pattern de fondo */}
+      <div className="absolute inset-0 -z-10 overflow-hidden opacity-[0.03]">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(52, 168, 83, 0.5) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(52, 168, 83, 0.5) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
+      </div>
+
+      {/* Glow orbs animados - responsive */}
+      <motion.div
+        className="absolute top-10 left-[10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full pointer-events-none opacity-60 md:opacity-100"
         style={{
-          background: "radial-gradient(circle, rgba(52, 168, 83, 0.2) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(52, 168, 83, 0.15) 0%, transparent 70%)",
           filter: "blur(60px)",
+        }}
+        animate={{
+          x: [0, 30, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-[5%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full pointer-events-none opacity-50 md:opacity-100"
+        style={{
+          background: "radial-gradient(circle, rgba(52, 168, 83, 0.12) 0%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
+        animate={{
+          x: [0, -25, 0],
+          y: [0, 25, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
         }}
       />
 
+      {/* Floating particles - solo desktop */}
+      <div className="hidden md:block absolute inset-0 -z-5 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-[#34A853] rounded-full"
+            style={{
+              left: `${15 + i * 15}%`,
+              top: `${20 + (i % 3) * 25}%`,
+              opacity: 0.4 + (i * 0.1),
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 3 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Líneas decorativas animadas - solo desktop */}
+      <div className="hidden lg:block absolute inset-0 -z-5 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-0 w-32 h-[1px] bg-gradient-to-r from-transparent via-[#34A853]/30 to-transparent"
+          animate={{ x: ["-100%", "400%"] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute top-2/3 right-0 w-24 h-[1px] bg-gradient-to-r from-transparent via-[#34A853]/20 to-transparent"
+          animate={{ x: ["400%", "-100%"] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
       {/* Contenido principal */}
       <motion.div 
-        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-full"
         style={{ opacity, y, scale }}
       >
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center px-2">
           {/* Badge superior - sin animación para renderizado inmediato */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-[#34A853]/30 bg-[#34A853]/5 text-xs text-[#B3B3B3] backdrop-blur-sm">
             <Zap className="w-3 h-3 text-[#34A853]" aria-hidden />
@@ -80,7 +166,7 @@ export default function Hero() {
           </div>
 
           {/* Título principal - visible inmediatamente sin animación para mejor FCP */}
-          <h1 className="hero-text text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
+          <h1 className="hero-text text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
             {t.title}{" "}
             <span className="relative inline-flex w-full justify-center overflow-hidden h-[1.2em] md:h-[1.15em]">
               {mounted ? (

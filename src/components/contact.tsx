@@ -79,9 +79,9 @@ export default function Contact() {
 
   return (
     <section id="contacto" className="py-20 bg-[#121212] relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#34A853]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#34A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+      {/* Decorative elements - hidden on mobile to prevent overflow */}
+      <div className="hidden md:block absolute top-0 right-0 w-96 h-96 bg-[#34A853]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+      <div className="hidden md:block absolute bottom-0 left-0 w-96 h-96 bg-[#34A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

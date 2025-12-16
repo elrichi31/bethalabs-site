@@ -1,12 +1,15 @@
 import dynamic from "next/dynamic"
 import Navbar from "@/components/navbar"
-import Hero from "@/components/hero"
-import About from "@/components/about"
+import { HeroSection } from "@/components/hero-section"
 import StructuredDataClient from "@/components/structured-data-client"
 import { getFeaturedPosts } from "@/lib/blog"
 import type { Metadata } from "next"
 
 // Dynamic imports para componentes below-fold (code splitting)
+const About = dynamic(() => import("@/components/about"), {
+  loading: () => <div className="min-h-[60vh] bg-[#1A1A1A]" />,
+})
+
 const Services = dynamic(() => import("@/components/services"), {
   loading: () => <div className="min-h-screen bg-[#121212]" />,
 })
@@ -53,10 +56,10 @@ export default async function Home() {
   const featuredPosts = await getFeaturedPosts(3)
 
   return (
-    <main className="min-h-screen bg-[#121212] text-white">
+    <main className="min-h-screen bg-[#121212] text-white overflow-x-hidden">
       <StructuredDataClient />
       <Navbar />
-      <Hero />
+      <HeroSection />
       <About />
       <Services />
       <Projects />
