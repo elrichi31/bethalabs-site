@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 // highlight.js CSS movido a blog-post.tsx para lazy loading
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -124,6 +125,20 @@ export default function RootLayout({
           html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:"GT Walsheim",system-ui,sans-serif;overflow-x:hidden;max-width:100vw}
           .hero-text{opacity:1!important;transform:none!important}
         `}} />
+        {/* Google Analytics - gtag.js */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-02QG2EX4RP"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-02QG2EX4RP');
+          `}
+        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
