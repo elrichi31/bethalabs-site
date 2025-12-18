@@ -37,7 +37,7 @@ export const translations = {
       title: "¿Quiénes somos?",
       paragraph1: "En BethaLabs somos una agencia de desarrollo web y automatización. Creamos sitios web profesionales, landing pages de alta conversión y automatizamos flujos de trabajo para que negocios sin área técnica puedan escalar con confianza.",
       paragraph2: "Nuestra misión es democratizar el acceso a soluciones digitales avanzadas, ayudando a pequeñas y medianas empresas a tener presencia online profesional y procesos automatizados.",
-      paragraph3: "🌎 Enfocados en el mercado latinoamericano: ofrecemos servicios presenciales en Ecuador y remotos en toda Latinoamérica.",
+      paragraph3: "✨ Hacemos realidad ideas digitales con pasión y enfoque en resultados.",
       cta: "Hablemos de tu proyecto",
     },
 
@@ -121,8 +121,9 @@ export const translations = {
     projects: {
       title: "Casos de éxito",
       subtitle: "Proyectos reales que demuestran nuestro impacto",
+      lead: "Innovación estratégica y diseño de alto impacto. Una selección curada de nuestros proyectos más recientes que transformaron negocios con resultados medibles.",
       viewMore: "Ver más",
-      contentNote: "Contenido en español (enfoque en mercado latinoamericano)",
+      contentNote: "Contenido en español",
       contentBadge: "🇪🇸 Español",
       ctaButton: "Solicitar cotización gratuita",
       featuredBadge: "⭐ CASO DESTACADO - Cliente Real ⭐",
@@ -141,6 +142,11 @@ export const translations = {
           title: "E-commerce con Pagos Integrados",
           description: "Desarrollamos una tienda online completa para una boutique de ropa en Quito. Incluye catálogo de productos con filtros, carrito de compras, integración con PayPhone para pagos locales, sistema de inventario en tiempo real.",
           impact: "Primeras ventas online en 2 semanas"
+        },
+        {
+          title: "Dashboard Analytics para SaaS",
+          description: "Creamos un dashboard interactivo para una empresa de software. Visualización de métricas en tiempo real, gráficos dinámicos, reportes exportables y sistema de alertas automáticas para KPIs críticos.",
+          impact: "Decisiones 3x más rápidas"
         }
       ]
     },
@@ -148,10 +154,12 @@ export const translations = {
     // Blog
     blog: {
       title: "Blog",
+      prefix: "Nuestro",
       subtitle: "Artículos, guías y tutoriales sobre desarrollo web y automatización",
       readMore: "Leer más",
+      allPosts: "Ver todos los artículos",
       readTime: "min de lectura",
-      contentNote: "La mayoría de artículos están escritos en español para nuestra audiencia latinoamericana",
+      contentNote: "La mayoría de artículos están escritos en español",
       contentBadge: "🇪🇸 Español",
     },
 
@@ -227,7 +235,7 @@ export const translations = {
       title: "Who we are?",
       paragraph1: "At BethaLabs we are a web development and automation agency. We create professional websites, high-conversion landing pages and automate workflows so businesses without a technical team can scale with confidence.",
       paragraph2: "Our mission is to democratize access to advanced digital solutions, helping small and medium businesses have a professional online presence and automated processes.",
-      paragraph3: "🌎 Focused on the Latin American market: we offer on-site services in Ecuador and remote services throughout Latin America.",
+      paragraph3: "✨ We bring digital ideas to life with passion and measurable results.",
       cta: "Let's talk about your project",
     },
 
@@ -311,8 +319,9 @@ export const translations = {
     projects: {
       title: "Success Stories",
       subtitle: "Real projects that demonstrate our impact",
+      lead: "Strategic innovation and high-impact design. A curated selection of our recent projects that delivered measurable results.",
       viewMore: "View more",
-      contentNote: "Content in Spanish (Latin American market focus)",
+      contentNote: "Content in Spanish",
       contentBadge: "🇪🇸 Spanish",
       ctaButton: "Request a free quote",
       featuredBadge: "⭐ FEATURED CASE - Real Client ⭐",
@@ -331,6 +340,11 @@ export const translations = {
           title: "E-commerce with Integrated Payments",
           description: "We developed a complete online store for a clothing boutique in Quito. Includes product catalog with filters, shopping cart, PayPhone integration for local payments, real-time inventory system.",
           impact: "First online sales in 2 weeks"
+        },
+        {
+          title: "Analytics Dashboard for SaaS",
+          description: "We created an interactive dashboard for a software company. Real-time metrics visualization, dynamic charts, exportable reports and automatic alert system for critical KPIs.",
+          impact: "3x faster decisions"
         }
       ]
     },
@@ -338,10 +352,12 @@ export const translations = {
     // Blog
     blog: {
       title: "Blog",
+      prefix: "Our",
       subtitle: "Articles, guides and tutorials on web development and automation",
       readMore: "Read more",
+      allPosts: "View all posts",
       readTime: "min read",
-      contentNote: "Most articles are written in Spanish for our Latin American audience",
+      contentNote: "Most articles are written in Spanish",
       contentBadge: "🇪🇸 Spanish",
     },
 

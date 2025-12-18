@@ -9,7 +9,7 @@ import { translations } from "@/lib/translations"
 const projectsData = [
     {
       id: 1,
-      image: "/projects/product-catalog.avif",
+      image: "/projects/marketing.avif",
       tags: ["Next.js", "Tailwind", "SEO"],
       category: "Web App",
       size: "large", // Proyecto destacado grande
@@ -17,7 +17,7 @@ const projectsData = [
     },
     {
       id: 2,
-      image: "/projects/hotelapp.avif",
+      image: "/projects/automation.avif",
       tags: ["WhatsApp", "n8n", "Automation"],
       category: "Automation",
       size: "normal",
@@ -25,7 +25,7 @@ const projectsData = [
     },
     {
       id: 3,
-      image: "/projects/auction.avif",
+      image: "/projects/ecommerce.avif",
       tags: ["E-commerce", "React", "Payments"],
       category: "E-commerce",
       size: "tall",
@@ -33,12 +33,11 @@ const projectsData = [
     },
     {
       id: 4,
-      image: "/projects/product-catalog.avif", // Reutilizamos para el 4to
+      image: "/projects/dashboard.avif", // Reutilizamos para el 4to
       tags: ["Analytics", "Dashboard", "React"],
       category: "SaaS",
       size: "normal",
       icon: Sparkles,
-      isPlaceholder: true // Proyecto en desarrollo
     }
   ];
 
@@ -49,13 +48,15 @@ export default function Projects() {
   // Combinar datos estáticos con traducciones (extendemos para el 4to proyecto)
   const projects = projectsData.map((project, index) => {
     const caseData = t.cases[index] || t.cases[0]; // Fallback al primero si no existe
+    const isPlaceholder = ((project as any).isPlaceholder ?? false) as boolean
     return {
       ...project,
-      title: project.isPlaceholder ? "SaaS Analytics Dashboard" : caseData.title,
-      description: project.isPlaceholder 
-        ? "Dashboard corporativo para visualización de big data en tiempo real." 
+      isPlaceholder,
+      title: isPlaceholder ? "SaaS Analytics Dashboard" : caseData.title,
+      description: isPlaceholder
+        ? "Dashboard corporativo para visualización de big data en tiempo real."
         : caseData.description,
-      impact: project.isPlaceholder ? "En desarrollo" : caseData.impact
+      impact: isPlaceholder ? "En desarrollo" : caseData.impact
     };
   });
 
@@ -69,8 +70,8 @@ export default function Projects() {
         {/* Header mejorado */}
         <motion.div
           className="mb-12 pb-8 border-b border-white/10"
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
@@ -79,23 +80,60 @@ export default function Projects() {
             <span>Resultados 2024</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-            <span className="text-white">Historias de </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Éxito</span>
+            {(() => {
+              const parts = t.title.split(" ")
+              const first = parts.shift() || ""
+              const rest = parts.join(" ")
+              return (
+                <>
+                  <span className="text-white">{first} </span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">{rest}</span>
+                </>
+              )
+            })()}
           </h2>
           <p className="text-base md:text-lg text-[#B3B3B3] max-w-3xl">
-            Innovación estratégica y diseño de alto impacto. Una selección curada de nuestros <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 font-semibold">proyectos más recientes</span> que transformaron negocios en Ecuador y Latinoamérica.
+            {(() => {
+              const highlight = language === 'es' ? 'proyectos más recientes' : 'recent projects'
+              if (t.lead.toLowerCase().includes(highlight)) {
+                const parts = t.lead.toLowerCase().split(highlight)
+                const idx = t.lead.toLowerCase().indexOf(highlight)
+                const before = t.lead.slice(0, idx)
+                const matched = t.lead.slice(idx, idx + highlight.length)
+                const after = t.lead.slice(idx + highlight.length)
+                return (
+                  <>
+                    {before}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400 font-semibold">{matched}</span>
+                    {after}
+                  </>
+                )
+              }
+              return t.lead
+            })()}
           </p>
         </motion.div>
 
         {/* Masonry Grid */}
-        <div className="flex flex-col gap-6 md:grid md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[280px]">
+        <motion.div
+          className="flex flex-col gap-6 md:grid md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[280px]"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ staggerChildren: 0.08 }}
+          variants={{
+            hidden: {},
+            show: {}
+          }}
+        >
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, scale: 0.9, y: 40 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+              variants={{
+                hidden: { opacity: 0, y: 22 },
+                show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 120, damping: 18 } }
+              }}
+              whileHover={{ y: -8, scale: 1.02 }}
               className={`
                 group relative overflow-hidden rounded-xl bg-[#1E1E1E] border border-white/5 shadow-lg
                 h-[280px] md:h-auto
@@ -155,7 +193,7 @@ export default function Projects() {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

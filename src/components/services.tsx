@@ -47,9 +47,18 @@ export default function Services() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">Nuestros </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Servicios</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              {(() => {
+                const parts = t.title.split(" ")
+                const first = parts.shift() || ""
+                const rest = parts.join(" ")
+                return (
+                  <>
+                    <span className="text-white">{first} </span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">{rest}</span>
+                  </>
+                )
+              })()}
             </h2>
             <p className="text-[#B3B3B3] max-w-2xl mx-auto">
               {t.subtitle}
@@ -117,9 +126,18 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">Nuestra </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Metodología</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              {(() => {
+                const parts = t.methodology.title.split(" ")
+                const first = parts.shift() || ""
+                const rest = parts.join(" ")
+                return (
+                  <>
+                    <span className="text-white">{first} </span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">{rest}</span>
+                  </>
+                )
+              })()}
             </h2>
             <p className="text-[#B3B3B3] max-w-2xl mx-auto">
               {t.methodology.subtitle}

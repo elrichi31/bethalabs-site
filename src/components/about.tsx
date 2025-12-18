@@ -10,7 +10,7 @@ export default function About() {
   const t = translations[language].about
 
   return (
-    <section id="about" className="py-20 bg-[#1A1A1A] overflow-hidden">
+    <section id="about" className="py-28 md:py-32 bg-[#1A1A1A] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -19,11 +19,20 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              <span className="text-white">Sobre </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">BethaLabs</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              {(() => {
+                const parts = t.title.split(" ")
+                const first = parts.shift() || ""
+                const rest = parts.join(" ")
+                return (
+                  <>
+                    <span className="text-white">{first} </span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">{rest}</span>
+                  </>
+                )
+              })()}
             </h2>
-            <p className="text-[#B3B3B3] text-lg mb-6">
+            <p className="text-[#B3B3B3] text-base md:text-lg leading-relaxed mb-6">
               {language === 'es' ? (
                 <>
                   {t.paragraph1.split('desarrollo web y automatización')[0]}
@@ -38,9 +47,9 @@ export default function About() {
                 </>
               )}
             </p>
-            <p className="text-[#B3B3B3] text-lg mb-6">{t.paragraph2}</p>
-            <div className="bg-[#34A853]/10 border border-[#34A853]/30 text-[#34A853] px-4 py-3 rounded-lg mb-6">
-              <p className="text-sm font-medium">{t.paragraph3}</p>
+            <p className="text-[#B3B3B3] text-base md:text-lg mb-6">{t.paragraph2}</p>
+            <div className="bg-[#34A853]/8 border border-[#34A853]/20 text-[#34A853] px-5 py-4 rounded-xl mb-6 max-w-xl">
+              <p className="text-sm md:text-base font-medium">{t.paragraph3}</p>
             </div>
             <a href="#contacto" className="inline-flex items-center text-[#34A853] font-medium hover:underline">
               {t.cta}
@@ -51,23 +60,23 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50, rotateY: -10 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            initial={{ opacity: 0, y: 24, scale: 0.99 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="relative flex items-center justify-center"
           >
-            <div className="relative w-full max-w-[500px] mx-auto">
+            <div className="relative w-full max-w-[620px] mx-auto">
               {/* Glow effect detrás de la imagen */}
-              <div className="absolute inset-0 bg-[#34A853]/10 rounded-2xl blur-3xl" />
+              <div className="absolute inset-0 bg-[#34A853]/10 rounded-3xl blur-4xl" />
               
               {/* Imagen */}
-              <div className="relative rounded-2xl overflow-hidden border border-[#34A853]/20 shadow-2xl">
+              <div className="relative rounded-3xl overflow-hidden border border-[#34A853]/20 shadow-2xl">
                 <Image
                   src="/about.avif"
                   alt="BethaLabs - Desarrollo Web y Automatización"
-                  width={500}
-                  height={500}
+                  width={620}
+                  height={620}
                   className="w-full h-auto"
                   loading="lazy"
                   quality={90}

@@ -7,7 +7,7 @@ import type { Metadata } from "next"
 
 // Dynamic imports para componentes below-fold (code splitting)
 const About = dynamic(() => import("@/components/about"), {
-  loading: () => <div className="min-h-[60vh] bg-[#1A1A1A]" />,
+  loading: () => <div className="min-h-[90vh] bg-[#1A1A1A]" />,
 })
 
 const Services = dynamic(() => import("@/components/services"), {

@@ -28,9 +28,17 @@ export default function Blog({ posts }: BlogSectionProps) {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-white">Nuestro </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">Blog</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            {(() => {
+              const prefix = translations[language].blog.prefix || ''
+              const title = translations[language].blog.title || 'Blog'
+              return (
+                <>
+                  <span className="text-white">{prefix} </span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34A853] to-emerald-400">{title}</span>
+                </>
+              )
+            })()}
           </h2>
           <p className="text-[#B3B3B3] max-w-2xl mx-auto">
             {t.subtitle}
@@ -120,7 +128,7 @@ export default function Blog({ posts }: BlogSectionProps) {
             href="/blog" 
             className="inline-flex items-center px-6 py-3 bg-[#34A853] text-white font-medium rounded-full shadow-lg hover:bg-[#2a8644] transition-colors duration-300"
           >
-            Ver todos los artículos
+            {translations[language].blog.allPosts}
             <svg
               className="ml-2 w-5 h-5"
               fill="none"
