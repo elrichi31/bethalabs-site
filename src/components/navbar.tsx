@@ -4,11 +4,12 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { motion } from "framer-motion"
+import { MotionDiv } from "@/lib/motion"
 import { usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/language-context"
 import { translations } from "@/lib/translations"
 import LanguageSelector from "./language-selector"
+import { useAnimationsEnabled } from "@/contexts/animation-context"
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -33,25 +34,27 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
+    const animationsEnabled = useAnimationsEnabled()
+
     return (
         <header className={`fixed z-50 w-full overflow-hidden`}>
             <div className="container mx-auto px-3 sm:px-4 my-4">
-                <motion.div
+                <MotionDiv
                     className={`flex justify-between items-center md:justify-center  md:items-center `}
-                    initial={{ y: -5, opacity: 0 }}
-                    animate={{ y: scrolled ? 0 : -5, opacity: 1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    initial={animationsEnabled ? { y: -5, opacity: 0 } : undefined}
+                    animate={animationsEnabled ? { y: scrolled ? 0 : -5, opacity: 1 } : undefined}
+                    transition={animationsEnabled ? { duration: 0.3, ease: "easeOut" } : undefined}
                 >
                     <div className={`flex space-x-0 md:space-x-10 items-center bg-black backdrop-blur-sm rounded-full px-6 py-3 ${scrolled ? "shadow-lg" : ""}`}
                     style={{
                         backgroundColor: scrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.2)",
                     }}
                     >
-                        <motion.div
+                        <MotionDiv
                             className={`flex items-center`}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={animationsEnabled ? { opacity: 0, x: -20 } : undefined}
+                            animate={animationsEnabled ? { opacity: 1, x: 0 } : undefined}
+                            transition={animationsEnabled ? { duration: 0.5 } : undefined}
                         >
                             <a href="/" className="flex items-center space-x-2">
                                 <Image 
@@ -65,17 +68,17 @@ export default function Navbar() {
                                 />
                                 <span className="text-white font-bold text-lg">BethaLabs</span>
                             </a>
-                        </motion.div>
-                        <motion.nav
+                        </MotionDiv>
+                        <MotionDiv
                             className="hidden md:flex space-x-6"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
+                            initial={animationsEnabled ? { opacity: 0 } : undefined}
+                            animate={animationsEnabled ? { opacity: 1 } : undefined}
+                            transition={animationsEnabled ? { duration: 0.5 } : undefined}
                         >
                             {navLinks.map((link, index) => (
                                 <NavLink key={link.name} {...link} index={index} />
                             ))}
-                        </motion.nav>
+                        </MotionDiv>
 
                         {/* Language Selector - Desktop */}
                         <div className="hidden md:block">
@@ -100,16 +103,15 @@ export default function Navbar() {
                             )}
                         </button>
                     </div>
-                </motion.div>
+                </MotionDiv>
             </div>
 
             {mobileMenuOpen && (
-                <motion.div
+                <MotionDiv
                     className="md:hidden mt-2 bg-black bg-opacity-30 backdrop-blur-lg rounded-2xl shadow-lg"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={animationsEnabled ? { opacity: 0, height: 0 } : undefined}
+                    animate={animationsEnabled ? { opacity: 1, height: 'auto' } : undefined}
+                    transition={animationsEnabled ? { duration: 0.3 } : undefined}
                     style={{
                         backgroundColor: scrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.2)",
                     }}
@@ -126,7 +128,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                     </div>
-                </motion.div>
+                </MotionDiv>
             )}
         </header>
     )
@@ -140,11 +142,13 @@ function NavLink({ name, href, index }: { name: string; href: string; index: num
         (href !== '/' && !href.startsWith('/#') && pathname === href)
     )
     
+    const animationsEnabled = useAnimationsEnabled()
+
     return (
-        <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
+        <MotionDiv
+            initial={animationsEnabled ? { opacity: 0, y: -10 } : undefined}
+            animate={animationsEnabled ? { opacity: 1, y: 0 } : undefined}
+            transition={animationsEnabled ? { duration: 0.3, delay: index * 0.1 } : undefined}
         >
             <Link 
                 href={href} 
@@ -156,7 +160,7 @@ function NavLink({ name, href, index }: { name: string; href: string; index: num
             >
                 {name}
             </Link>
-        </motion.div>
+        </MotionDiv>
     )
 }
 

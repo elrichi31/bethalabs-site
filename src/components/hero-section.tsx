@@ -1,16 +1,24 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Zap } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { translations } from "@/lib/translations";
 import { FloatingCards } from "@/components/floating-cards";
+import HeroSectionEffects from "@/components/hero-section/HeroSectionEffects";
 
 export function HeroSection() {
   const { language } = useLanguage();
   const t = translations[language].hero;
-  const shouldReduceMotion = useReducedMotion();
+  const [shouldReduceMotion, setShouldReduceMotion] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const evalReduce = () => setShouldReduceMotion(mq.matches)
+    evalReduce()
+    mq.addEventListener?.('change', evalReduce)
+    return () => mq.removeEventListener?.('change', evalReduce)
+  }, [])
 
   const [wordIndex, setWordIndex] = useState(0);
   const [prevWordIndex, setPrevWordIndex] = useState(0);
@@ -76,49 +84,24 @@ export function HeroSection() {
         }}
       />
 
-      {/* Animated Blobs */}
-      <motion.div
-        className="absolute top-0 left-1/4 w-[420px] h-[420px] sm:w-[500px] sm:h-[500px] bg-[#34A853]/18 rounded-full blur-[110px] mix-blend-screen pointer-events-none"
-        animate={
-          shouldReduceMotion ? undefined : { x: [0, 20, -10, 0], y: [0, -30, 10, 0], scale: [1, 1.08, 0.98, 1] }
-        }
-        transition={shouldReduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        style={{ willChange: "transform" }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-1/4 w-[420px] h-[420px] sm:w-[500px] sm:h-[500px] bg-[#34A853]/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"
-        animate={
-          shouldReduceMotion ? undefined : { x: [0, -18, 10, 0], y: [0, 24, -12, 0], scale: [1, 0.97, 1.07, 1] }
-        }
-        transition={shouldReduceMotion ? undefined : { duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        style={{ willChange: "transform" }}
-      />
+      {/* Heavy animated effects moved to client component (CSS-based) */}
+      <HeroSectionEffects />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#34A853]/30 bg-[#34A853]/10 backdrop-blur-sm"
-            >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#34A853]/30 bg-[#34A853]/10 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34A853] opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#34A853]" />
               </span>
               <span className="text-xs font-semibold text-[#B3B3B3] uppercase tracking-wider">{badgeText}</span>
-            </motion.div>
+            </div>
 
             {/* Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.06, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white"
-            >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
               {t.title}
               <br />
               <span className="relative inline-flex items-baseline overflow-hidden h-[1.15em] w-[18ch] sm:w-[20ch]">
@@ -146,25 +129,16 @@ export function HeroSection() {
                   );
                 })}
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.14, ease: "easeOut" }}
-              className="text-lg text-[#B3B3B3] max-w-xl leading-relaxed"
-            >
+            <p className="text-lg text-[#B3B3B3] max-w-xl leading-relaxed">
               {t.description}
-            </motion.p>
+            </p>
+            
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
-            >
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <a
                 className="group inline-flex items-center justify-center gap-2 px-7 py-3 bg-[#34A853] text-white rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-[#34A853]/30 hover:bg-[#2a8644]"
                 href="#contacto"
@@ -178,15 +152,10 @@ export function HeroSection() {
               >
                 {t.ctaSecondary}
               </a>
-            </motion.div>
+            </div>
 
             {/* Social Proof */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.28, ease: "easeOut" }}
-              className="pt-8 flex items-center gap-8 border-t border-white/10 w-full justify-center lg:justify-start"
-            >
+            <div className="pt-8 flex items-center gap-8 border-t border-white/10 w-full justify-center lg:justify-start">
               <div className="flex -space-x-3">
                 <div className="w-10 h-10 rounded-full border-2 border-[#121212] bg-[#1E1E1E] flex items-center justify-center text-xs font-bold text-white">
                   ST
@@ -209,7 +178,7 @@ export function HeroSection() {
                 </div>
                 <span className="text-xs font-medium text-[#B3B3B3]">{socialLabel}</span>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Column - Floating Cards */}

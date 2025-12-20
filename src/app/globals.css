@@ -155,3 +155,60 @@ button, input, textarea, select {
 .blog-content pre::-webkit-scrollbar-thumb:hover {
   background: #2a8644;
 }
+
+/* Disable or reduce animations in mobile and when user prefers reduced motion */
+@media (max-width: 767px) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: -1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    will-change: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Utility class added by AnimationProvider to force a no-animation state */
+.no-animations * {
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* Lightweight CSS animations used by HeroEffects (desktop only) */
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slideX {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+@keyframes slideXReverse {
+  0% { transform: translateX(400%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-float { animation: floatY 6s ease-in-out infinite; }
+.animate-slide-x { animation: slideX 8s linear infinite; }
+.animate-slide-x-reverse { animation: slideXReverse 10s linear infinite; }
+
+/* Simple fade/translate for small entry effects (no JS) */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.entry-fade { animation: fadeUp 0.6s ease-out both; }
+
+
+

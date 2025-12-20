@@ -6,6 +6,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { LanguageProvider } from "@/contexts/language-context"
+import AnimationProvider from '@/contexts/animation-context'
 import DynamicMetadata from "@/components/dynamic-metadata"
 
 
@@ -125,28 +126,36 @@ export default function RootLayout({
           html,body{margin:0;padding:0;background:#121212;color:#fff;font-family:"GT Walsheim",system-ui,sans-serif;overflow-x:hidden;max-width:100vw}
           .hero-text{opacity:1!important;transform:none!important}
         `}} />
-        {/* Google Analytics - gtag.js */}
+        {/* Google Analytics - gtag.js (deferred to idle to avoid blocking LCP) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-02QG2EX4RP"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-02QG2EX4RP');
-          `}
+        <Script id="gtag-init" strategy="lazyOnload">
+          {`(function(){
+            function init(){
+              try{
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);} 
+                window.gtag = window.gtag || gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-02QG2EX4RP');
+              }catch(e){}
+            }
+            if ('requestIdleCallback' in window) requestIdleCallback(init);
+            else window.addEventListener('load', init);
+          })();`}
         </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider>
-          <DynamicMetadata />
-          {children}
-        </LanguageProvider>
+        <AnimationProvider>
+          <LanguageProvider>
+            <DynamicMetadata />
+            {children}
+          </LanguageProvider>
+        </AnimationProvider>
         <Analytics />
         <SpeedInsights />
       </body>
