@@ -57,6 +57,24 @@ export const metadata: Metadata = {
   publisher: 'BethaLabs',
   category: 'technology',
   classification: 'Web Development Agency',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'icon',
+        url: '/favicon.ico',
+      },
+    ],
+  },
+  manifest: '/manifest.json',
   alternates: {
     canonical: 'https://www.bethalabs.com',
     languages: {
@@ -78,7 +96,7 @@ export const metadata: Metadata = {
     description: 'Creamos sitios web profesionales y automatizamos procesos para PyMEs ecuatorianas. Landing pages, e-commerce y chatbots WhatsApp.',
     images: [
       {
-        url: '/logo.avif',
+        url: '/icon-512.png',
         width: 512,
         height: 512,
         alt: 'BethaLabs - Desarrollo Web y Automatización Ecuador',
@@ -89,7 +107,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BethaLabs | Desarrollo Web y Automatización Ecuador',
     description: 'Agencia de desarrollo web y automatización para PyMEs ecuatorianas',
-    images: ['/logo.avif'],
+    images: ['/icon-512.png'],
+    creator: '@bethalabs',
+    site: '@bethalabs',
   },
   robots: {
     index: true,
@@ -101,6 +121,23 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  other: {
+    // Metadata para redes sociales
+    'og:logo': 'https://www.bethalabs.com/icon-512.png',
+    'og:brand': 'BethaLabs',
+    // TikTok metadata
+    'tiktok:app_id': 'bethalabs',
+    'tiktok:title': 'BethaLabs | Desarrollo Web y Automatización Ecuador',
+    'tiktok:description': 'Creamos sitios web profesionales y automatizamos procesos para PyMEs',
+    // Instagram metadata
+    'instagram:title': 'BethaLabs Ecuador',
+    'instagram:description': 'Desarrollo Web y Automatización para PyMEs',
+    // LinkedIn metadata
+    'linkedin:owner': 'BethaLabs',
+    // Pinterest metadata
+    'pinterest:title': 'BethaLabs | Desarrollo Web y Automatización',
+    'pinterest:description': 'Agencia de desarrollo web en Ecuador',
   },
   // verification: {
   //   google: 'AÑADIR_CODIGO_GOOGLE_SEARCH_CONSOLE',

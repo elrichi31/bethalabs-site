@@ -5,9 +5,17 @@ export default function StructuredData({ language = 'es' }: { language?: 'es' | 
     "@type": "Organization",
     "name": "BethaLabs",
     "alternateName": "BethaLabs Ecuador",
+    "legalName": "BethaLabs",
     "url": "https://www.bethalabs.com",
-    "logo": "https://www.bethalabs.com/logo.avif",
-    "description": language === 'es' 
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.bethalabs.com/icon-512.png",
+      "width": 512,
+      "height": 512,
+      "caption": "BethaLabs Logo"
+    },
+    "image": "https://www.bethalabs.com/icon-512.png",
+    "description": language === 'es'
       ? "Agencia ecuatoriana de desarrollo web y automatización para PyMEs. Landing pages, e-commerce, chatbots WhatsApp y flujos automáticos con n8n."
       : "Ecuadorian web development and automation agency for SMEs. Landing pages, e-commerce, WhatsApp chatbots and automated workflows with n8n.",
     "inLanguage": [language === 'es' ? 'es-EC' : 'en-US'],
@@ -49,16 +57,21 @@ export default function StructuredData({ language = 'es' }: { language?: 'es' | 
       }
     ],
     "sameAs": [
-      "https://linkedin.com/company/bethalabs",
+      "https://www.linkedin.com/company/bethalabs",
       "https://github.com/bethalabs",
-      "https://twitter.com/bethalabs"
+      "https://twitter.com/bethalabs",
+      "https://www.tiktok.com/@bethalabs",
+      "https://www.instagram.com/bethalabs",
+      "https://www.facebook.com/bethalabs"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
       "email": "bethalabs.dev@gmail.com",
       "availableLanguage": ["Spanish", "English"]
-    }
+    },
+    "foundingDate": "2024",
+    "keywords": "desarrollo web, automatización, n8n, chatbots WhatsApp, landing pages, e-commerce, PyMEs Ecuador"
   }
 
   const servicesSchema = {
@@ -115,7 +128,7 @@ export default function StructuredData({ language = 'es' }: { language?: 'es' | 
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "BethaLabs",
-    "image": "https://www.bethalabs.com/logo.png",
+    "image": "https://www.bethalabs.com/icon-512.png",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -144,6 +157,53 @@ export default function StructuredData({ language = 'es' }: { language?: 'es' | 
         "closes": "18:00"
       }
     ]
+  }
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BethaLabs",
+    "alternateName": "BethaLabs Ecuador",
+    "url": "https://www.bethalabs.com",
+    "description": language === 'es'
+      ? "Desarrollo web y automatización para PyMEs en Ecuador"
+      : "Web development and automation for SMEs in Ecuador",
+    "publisher": {
+      "@type": "Organization",
+      "name": "BethaLabs",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.bethalabs.com/icon-512.png"
+      }
+    },
+    "inLanguage": language === 'es' ? 'es-EC' : 'en-US',
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.bethalabs.com/blog?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog BethaLabs",
+    "description": language === 'es'
+      ? "Artículos sobre desarrollo web, automatización y tecnología para PyMEs"
+      : "Articles about web development, automation and technology for SMEs",
+    "url": "https://www.bethalabs.com/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "BethaLabs",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.bethalabs.com/icon-512.png"
+      }
+    },
+    "inLanguage": "es-EC"
   }
 
   const breadcrumbSchema = {
@@ -237,6 +297,14 @@ export default function StructuredData({ language = 'es' }: { language?: 'es' | 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
       <script
         type="application/ld+json"
