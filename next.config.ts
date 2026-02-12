@@ -40,10 +40,6 @@ const nextConfig: NextConfig = {
         source: '/favicon.ico',
         headers: [
           {
-            key: 'X-Robots-Tag',
-            value: 'noindex, nofollow, nosnippet',
-          },
-          {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
@@ -55,10 +51,6 @@ const nextConfig: NextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
-          },
-          {
-            key: 'X-Robots-Tag',
-            value: 'noindex, nofollow, nosnippet',
           },
         ],
       },
