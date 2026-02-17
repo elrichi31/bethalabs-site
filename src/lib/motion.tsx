@@ -32,28 +32,3 @@ export function MotionDiv(props: MotionProps) {
   const safe = stripMotionProps(props)
   return <div {...safe} />
 }
-
-export function MotionSpan(props: MotionProps) {
-  const enabled = useAnimationsEnabled()
-  const [Motion, setMotion] = useState<any | null>(null)
-
-  useEffect(() => {
-    let mounted = true
-    if (enabled) {
-      import('framer-motion').then((m) => {
-        if (mounted) setMotion(() => m.motion)
-      }).catch(() => {})
-    }
-    return () => { mounted = false }
-  }, [enabled])
-
-  if (enabled && Motion) {
-    const MotionComp = Motion.span
-    return <MotionComp {...props} />
-  }
-
-  const safe = stripMotionProps(props)
-  return <span {...safe} />
-}
-
-export default MotionDiv

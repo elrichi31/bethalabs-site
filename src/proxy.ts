@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Obtener idioma de la cookie
   const cookieLanguage = request.cookies.get('language')?.value
   
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Configurar en qué rutas se ejecuta el middleware
+// Configurar en qué rutas se ejecuta el proxy
 export const config = {
   matcher: [
     /*

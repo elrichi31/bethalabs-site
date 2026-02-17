@@ -8,7 +8,7 @@ type AnimationContextType = {
 
 const AnimationContext = createContext<AnimationContextType>({ animationsEnabled: false })
 
-export function AnimationProvider({ children }: { children: React.ReactNode }) {
+function AnimationProvider({ children }: { children: React.ReactNode }) {
   const [animationsEnabled, setAnimationsEnabled] = useState(false)
 
   useEffect(() => {

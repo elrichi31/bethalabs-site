@@ -395,11 +395,3 @@ export const translations = {
     }
   }
 } as const;
-
-export type Language = keyof typeof translations;
-export type TranslationKeys = typeof translations.es;
-
-// Helper para obtener traducciones
-export function getTranslations(lang: Language) {
-  return translations[lang];
-}

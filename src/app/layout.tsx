@@ -7,7 +7,6 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { LanguageProvider } from "@/contexts/language-context"
 import AnimationProvider from '@/contexts/animation-context'
-import DynamicMetadata from "@/components/dynamic-metadata"
 
 
 const geistSans = Geist({
@@ -71,10 +70,6 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   alternates: {
     canonical: 'https://www.bethalabs.com',
-    languages: {
-      'es-EC': 'https://www.bethalabs.com',
-      'en': 'https://www.bethalabs.com',
-    },
   },
   formatDetection: {
     email: false,
@@ -183,7 +178,6 @@ export default function RootLayout({
       >
         <AnimationProvider>
           <LanguageProvider>
-            <DynamicMetadata />
             {children}
           </LanguageProvider>
         </AnimationProvider>
